@@ -12,23 +12,54 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Klasa Showtime predstvalja projekciju sa svim svojim atributima. Implementira interfejs
+ * DomainObject i Serializable.
  *
  * @author Ivona
+ * 
+ * @version 1.0
  */
 public class Showtime implements DomainObject, Serializable  {
 
     /**
-	 * 
+	 * indentifikator projekcije
 	 */
-	private static final long serialVersionUID = 1L;
 	private int showtimeId;
+	/**
+	 * datum projekcije
+	 */
     private Date date;
+    /**
+	 * vreme projekcije
+	 */
     private Date time;
+    /**
+	 * korisnik koji je uneo projekciju
+	 */
     private User user;
+    /**
+	 * sala u kojoj se odrzava projekcija
+	 */
     private Hall hall;
+    /**
+	 *  film koji se prikazuje na projekciji
+	 */
     private Movie movie;
+    /**
+	 * filmski maraton na kom se prikazuje projekcija
+	 */
     private MovieMarathon movieMarathon;
 
+    /**
+     * Parametrizovani konstruktor za projekciju.
+     * @param showtimeId indentifikator projekcije
+     * @param date datum projekcije
+     * @param time vreme projekcije
+     * @param user korisnik koji je uneo projekciju
+     * @param hall sala u kojoj je projekcija
+     * @param movie film koji se prikazuje u projekciji
+     * @param movieMarathon filmski maraton na kom se prikazuje projekcija
+     */
     public Showtime(int showtimeId, Date date, Date time, User user, Hall hall, Movie movie, MovieMarathon movieMarathon) {
         this.showtimeId = showtimeId;
         this.date = date;
@@ -38,6 +69,15 @@ public class Showtime implements DomainObject, Serializable  {
         this.movie = movie;
         this.movieMarathon = movieMarathon;
     }
+    
+    /**
+     * Parametrizovani konstruktor za projekciju.
+     * @param date datum projekcije
+     * @param time vreme projekcije
+     * @param user korisnik koji je uneo projekciju
+     * @param hall sala u kojoj je projekcija
+     * @param movie film koji se prikazuje u projekciji
+     */
     public Showtime( Date date, Date time, User user, Hall hall, Movie movie) {
         this.date = date;
         this.time = time;
@@ -46,17 +86,34 @@ public class Showtime implements DomainObject, Serializable  {
         this.movie = movie;
     }
 
+    /**
+     * Neparametrizovani konstruktor za projekciju.
+     */
     public Showtime() {
     }
 
+  /**
+   * Parametrizovani konstruktor za projekciju.
+   * @param showtimeId indentifikator projekcije
+   */
     Showtime(int showtimeId) {
         this.showtimeId = showtimeId;
     }
 
+    /**
+   	 * get metoda za showtimeId.
+   	 * 
+   	 * @return indentifikator projekcije
+   	 */
     public int getShowtimeId() {
         return showtimeId;
     }
 
+    /**
+   	 * set metoda za showtimeId.
+   	 * 
+   	 * @param indentifikator projekcije
+   	 */
     public void setShowtimeId(int showtimeId) {
         this.showtimeId = showtimeId;
     }
@@ -77,13 +134,24 @@ public class Showtime implements DomainObject, Serializable  {
         this.time = time;
     }
 
-    public User getUser() {
-        return user;
-    }
+    /**
+ 	 * Get metoda za korisnika.
+ 	 * 
+ 	 * @return korisnik koji je uneo projekciju
+ 	 */
+     public User getUser() {
+         return user;
+     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+     /**
+    	 * Set metoda za korisnika.
+    	 * 
+    	 * @param korisnik koji je uneo projekciju
+    	 */
+     public void setUser(User user) {
+         this.user = user;
+     }
+
 
     public Hall getHall() {
         return hall;
@@ -109,31 +177,73 @@ public class Showtime implements DomainObject, Serializable  {
         this.movieMarathon = movieMarathon;
     }
 
+    /**
+	 * Implementirana metoda iz interfejsa DomainObject.
+	 *  Metoda vraca naziv tabele za domenski
+	 * objekat Showtime.
+	 * 
+	 * @return String koji predstavlja naziv tabele, u ovom slucaju "Showtime".
+	 */
     @Override
     public String getTableName() {
         return "Showtime";
     }
 
+	/**
+	 * Implementirana metoda iz interfejsa DomainObject.
+	 *  Metoda vraca vrednosti za rezervaciju koje
+	 * zelimo da sacuvamo u tabeli.
+	 * 
+	 * @return String koji predstavlja vrednosti (za rezervaciju) koje ubacujemo u tabelu;
+	 *         u ovom slucaju to su indentifikator projekcije, datum, vreme, id korisnika, id sale i id filma.
+	 */
     @Override
     public String getParameters() {
         return String.format("%s, '%s','%s',%s,%s,%s", showtimeId, new java.sql.Date(date.getTime()), new java.sql.Time(time.getTime()), user.getUserId(), hall.getHallId(), movie.getMovieId());
     }
 
+    /**
+   	 * Implementirana metoda iz interfejsa DomainObject.
+   	 * Metoda vraca nazive kolona za Showtime koje zelimo da sacuvamo u
+   	 * tabeli.
+   	 * 
+   	 * @return String koji predstavlja nazive kolona koji ubacujemo u tabelu projekcija.
+   	 */
     @Override
     public String getParameterNames() {
         return "ShowtimeId, Date, Time, UserId, HallId, MovieId";
     }
 
+    /**
+	 * Implementirana metoda iz interfejsa DomainObject.
+	 * Metoda vraca vrednost primarnog kljuca za datu projekciju.
+	 * 
+	 * @return int vrednost indentifikatora projekcije
+	 */
     @Override
     public int getPrimaryKeyValue() {
         return showtimeId;
     }
 
+    /**
+	 * Implementirana metoda iz interfejsa DomainObject.
+	 * Metoda vraca naziv primarnog kljuca za Showtime.
+	 * 
+	 * @return String naziv primarnog kljuca za projekciju,
+	 * u ovom slucaju to je ShowtimeId.
+	 */
     @Override
     public String getPrimaryKeyName() {
         return "ShowtimeId";
     }
 
+    /**
+  	 * Implementirana metoda iz interfejsa DomainObject.
+  	 * Metoda koja cita iz ResultSeta listu projekcija.
+  	 * 
+  	 * @param rs ResultSet iz kog cemo procitati listu projekciju.
+  	 * @return Lista projekcija koje su procitani iz baze.
+  	 */
     @Override
     public List<DomainObject> convertRSList(ResultSet rs) {
         List<DomainObject> list = new ArrayList<>();
@@ -159,42 +269,52 @@ public class Showtime implements DomainObject, Serializable  {
 
         return list;
     }
-
+    
+    /**
+	 * Implementirana metoda iz interfejsa DomainObject.
+	 * Metoda koja vraca naziv kolone i vrednost na koju ce ta kolona biti
+	 * azurirana u tabeli Showtime.
+	 * 
+	 * @return String naziv kolone i vrednost na koju ce ta kolona biti postavljena.
+	 */
     @Override
     public String getUpdateQuery() {
         return " hallId=" + hall.getHallId();
     }
 
+    /**
+     * Vraca string sa podacima o projekciji: 
+     * <ol>
+     * <li> vreme projekcije <li>sala u kojoj je projekcija</ol>
+     * @return String Podaci o rezervaciji u tekstualnom formatu.
+     */
     @Override
     public String toString() {
         return time+" "+hall.getName();
     }
 
+    /**
+	 * Implementirana metoda iz interfejsa DomainObject.
+	 * Metoda vraca uslov za spajanje tabele sa 2. tabelom.
+	 * 
+	 * @return String metoda vraca uslov za spajanje tabele Showtime sa 2. tabelama.
+	 * U ovom slucaju to su Hall i Movie.
+	 */
     @Override
     public String getJoinCondition() {
         return " JOIN Hall h on h.Hallid=t.HallId JOIN Movie m on t.movieId=m.movieId";
     }
 
+    /**
+	 * Implementirana metoda iz interfejsa DomainObject.
+	 * Metoda vraca uslov za sortiranje vrednosti za klasu Showtime.
+	 * 
+	 * @return vraca vrednost po kom ce biti sortirani objekti klase Showtime.
+	 * U ovom slucaju to je po vremenu projekcije rastuce.
+	 */
     @Override
     public String getSortCondition() {
         return " time asc";
     }
-
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        return true;
-    }
-
-    
     
 }

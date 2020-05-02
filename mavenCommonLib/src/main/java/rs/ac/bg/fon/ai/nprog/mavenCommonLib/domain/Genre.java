@@ -7,6 +7,8 @@ package rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain;
 /**
  *
  * @author Ivona
+ * 
+ * Enum u kome se nalaze zanrovi za film.
  */
 public enum Genre {
 action,adventure,comedy,crime,drama,fantasy,historical,horror,mistery,romance,saga,satire,social,thriller

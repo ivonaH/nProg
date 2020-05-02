@@ -48,7 +48,7 @@ public interface DomainObject {
 	int getPrimaryKeyValue();
 
 	/**
-	 * Metoda vraca vrednost primarnog kljuca za dati domenski objekat.
+	 * Metoda vraca naziv primarnog kljuca za dati domenski objekat.
 	 * 
 	 * @return String naziv primarnog kljuca.
 	 */
@@ -66,7 +66,7 @@ public interface DomainObject {
 	 * Metoda koja vraca naziv kolone i vrednost na koju ce ta kolona biti
 	 * postavljena.
 	 * 
-	 * @return String naziv kolone i vrednost na koju ce ta kolona biti postavljena.
+	 * @return String naziv kolone i vrednost na koju ce ta kolona biti azurirana.
 	 *         Na primer: " hallId=1"
 	 */
 	String getUpdateQuery();
