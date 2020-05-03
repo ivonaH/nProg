@@ -130,7 +130,7 @@ public class Hall implements DomainObject, Serializable {
 	 */
 	@Override
 	public String getParameters() {
-		return String.format("%s, '%s',%s", hallId, name, capacity);
+		return String.format("%s, '%s', %s", hallId, name, capacity);
 	}
 
 	/**
@@ -248,6 +248,15 @@ public class Hall implements DomainObject, Serializable {
 	 */
 	@Override
 	public boolean equals(Object obj) {
+		 if (this == obj) {
+	            return true;
+	        }
+	        if (obj == null) {
+	            return false;
+	        }
+	        if (getClass() != obj.getClass()) {
+	            return false;
+	        }
 		Hall hall = (Hall) obj;
 		return hall.hallId == this.hallId;
 	}
