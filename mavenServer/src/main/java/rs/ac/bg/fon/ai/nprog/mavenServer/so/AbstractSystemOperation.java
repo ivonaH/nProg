@@ -12,6 +12,8 @@ import java.util.List;
 /**
  *
  * @author Ivona
+ * 
+ * @version 1.0
  */
 public abstract class AbstractSystemOperation {
 
