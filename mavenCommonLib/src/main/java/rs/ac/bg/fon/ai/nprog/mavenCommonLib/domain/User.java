@@ -82,7 +82,7 @@ public class User implements DomainObject, Serializable {
     }
 
    /**
-	 * get metoda za userId.
+	 * get metoda za indentifikator korisnika
 	 * 
 	 * @return indentifikator korisnika
 	 */
@@ -91,7 +91,7 @@ public class User implements DomainObject, Serializable {
     }
 
     /**
-	 * Set metoda za userId.
+	 * Set metoda za indentifikator korisnika
 	 * 
 	 * @param indentifikator korisnika
 	 */
@@ -99,34 +99,74 @@ public class User implements DomainObject, Serializable {
         this.userId = userId;
     }
 
+    /**
+   	 * get metoda za korisnicko ime
+   	 * 
+   	 * @return korisnicko ime
+   	 */
     public String getUsername() {
         return username;
     }
 
+    /**
+   	 * Set metoda za korisnicko ime
+   	 * 
+   	 * @param korisnicko ime
+   	 */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+   	 * get metoda za ime korisnika
+   	 * 
+   	 * @return ime korisnika
+   	 */
     public String getName() {
         return name;
     }
 
+    /**
+   	 * Set metoda za ime korisnika.
+   	 * 
+   	 * @param ime korisnika
+   	 */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+   	 * get metoda za prezime korisnika
+   	 * 
+   	 * @return prezime korisnika
+   	 */
     public String getLastname() {
         return lastname;
     }
 
+    /**
+   	 * Set metoda za prezime korisnika.
+   	 * 
+   	 * @param prezime korisnika
+   	 */
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
+    /**
+   	 * get metoda za sifru korisnika
+   	 * 
+   	 * @return sifru korisnika
+   	 */
     public String getPassword() {
         return password;
     }
 
+    /**
+   	 * Set metoda za sifru korisnika.
+   	 * 
+   	 * @param sifra korisnika
+   	 */
     public void setPassword(String password) {
         this.password = password;
     }
