@@ -277,7 +277,7 @@ public class Reservation implements DomainObject, Serializable  {
 	 */
     @Override
     public String getUpdateQuery() {
-        return "ReservationId=" + reservationId + ", NameLastname= '" + nameLastname + "', Email='" + email + ", UserId=" + user.getUserId() + ", ShowtimeId=" + showtime.getShowtimeId();
+        return "ReservationId=" + reservationId + ", NameLastname= '" + nameLastname + "', Email='" + email + "', UserId=" + user.getUserId() + ", ShowtimeId=" + showtime.getShowtimeId();
     }
 
     /*

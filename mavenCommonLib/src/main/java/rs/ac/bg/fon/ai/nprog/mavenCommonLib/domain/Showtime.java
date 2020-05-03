@@ -368,4 +368,26 @@ public class Showtime implements DomainObject, Serializable {
 		return " time asc";
 	}
 
+	/**
+	 * Proverava da li su dve projekcije iste. 
+	 * Poredi projekcije po atributu <i><b> showtimeId</b></i>
+	 * @param obj Showtime koju zelimo da uporedimo sa zeljenom projekcijom.
+	 * @return true ako su dve projekcije iste po ovim parametrima, ako nisu vraca <b> false</b>.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Showtime other = (Showtime) obj;
+		if (showtimeId != other.showtimeId)
+			return false;
+		return true;
+	}
+	
+	
+
 }
