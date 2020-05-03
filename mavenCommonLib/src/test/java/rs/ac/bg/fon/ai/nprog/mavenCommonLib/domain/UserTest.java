@@ -12,6 +12,12 @@ public class UserTest {
 	@Before
 	public void setUp() throws Exception {
 		user = new User();
+		user.setUserId(2);
+		user.setUsername("ivona98");
+		user.setName("Ivona");
+		user.setLastname("Ivonic");
+		user.setPassword("ivona123");
+
 	}
 
 	@After
@@ -21,32 +27,27 @@ public class UserTest {
 
 	@Test
 	public void testSetUserId() {
-		user.setUserId(2);
 		assertEquals(2, user.getUserId());
 	}
 
 	@Test
 	public void testSetUsername() {
-		user.setUsername("ivona98");
 		assertEquals("ivona98", user.getUsername());
 	}
 
 	@Test
 	public void testSetName() {
-		user.setName("Ivona");
 		assertEquals("Ivona", user.getName());
 	}
 
 	@Test
 	public void testSetLastname() {
-		user.setLastname("Ivonic");
 		assertEquals("Ivonic", user.getLastname());
 	}
 
 	@Test
 	public void testSetPassword() {
-		user.setPassword("ivona");
-		assertEquals("ivona", user.getPassword());
+		assertEquals("ivona123", user.getPassword());
 	}
 
 	@Test
@@ -56,8 +57,7 @@ public class UserTest {
 
 	@Test
 	public void testGetParameters() {
-		user=new User(2,"pera","pera1","Pera","Peric");
-		assertEquals("2, 'pera','Peric','pera1','Pera'", user.getParameters());
+		assertEquals("2, 'ivona98','ivona123','Ivona','Ivonic'", user.getParameters());
 	}
 
 	@Test
@@ -76,10 +76,10 @@ public class UserTest {
 		assertEquals("userId",user.getPrimaryKeyName());
 	}
 
-	@Test
-	public void testConvertRSList() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testConvertRSList() {
+//		fail("Not yet implemented");
+//	}
 
 	@Test
 	public void testGetUpdateQuery() {
