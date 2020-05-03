@@ -245,4 +245,26 @@ public class MovieMarathon implements DomainObject, Serializable {
 		return "name";
 	}
 
+	/**
+	 * Proverava da li su dva filmska maratona ista. 
+	 * Poredi maratone po atributu <i><b> marathonId</b></i>
+	 * @param obj MovieMarathon koju zelimo da uporedimo sa zeljenim maraton.
+	 * @return true ako su dva maratona ista po ovim parametrima, ako nisu vraca <b> false</b>.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MovieMarathon other = (MovieMarathon) obj;
+		if (marathonId != other.marathonId)
+			return false;
+		return true;
+	}
+ 
+	
+	
 }
