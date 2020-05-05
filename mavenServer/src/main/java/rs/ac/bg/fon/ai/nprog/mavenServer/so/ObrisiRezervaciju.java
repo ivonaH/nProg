@@ -12,20 +12,43 @@ import java.util.List;
 /**
  *
  * @author Ivona
+ * 
+ * @version 1.0
+ * 
+ *          Klasa ObrisiRezervaciju predstavlja sistemsku operaciju kojom se
+ *          brise rezervacija iz baze. Nasledjuje AbstractSystemOperation.
  */
 public class ObrisiRezervaciju extends AbstractSystemOperation {
 
-    @Override
-    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
-        Reservation reservation = (Reservation) object;
-        dbb.deleteDomainObject(reservation);
-    }
+	/**
+	 * Metoda koja brise rezervacija iz baze.
+	 * 
+	 * 
+	 * @param object  Objekat koji zelimo da obrisemo iz baze.
+	 * @param columns null
+	 * @param values  null
+	 * @throws Exception ako dodje do greske prilikom brisanja rezervacije iz baze.
+	 */
+	@Override
+	protected void executeSpecificOperation(DomainObject object, List<String> columns, List<String> values)
+			throws Exception {
+		dbb.deleteDomainObject(object);
+	}
 
-    @Override
-    protected void validate(Object object) throws Exception {
-        if (!(object instanceof Reservation)) {
-            throw new Exception("Objekat nije instanca klase Rezervacija!");
-        }
-    }
+	 /**
+		 * Metoda koja vrsi validaciju da li je objekat instanca klase
+		 * Reservation.
+		 * 
+		 * @param object Objekat za koji zelimo da proverimo da li je instanca klase
+		 *               Reservation.
+		 * @throws Exception ako objekat nije instanca klase Reservation.
+		 * 
+		 */
+	@Override
+	protected void validate(DomainObject object) throws Exception {
+		if (!(object instanceof Reservation)) {
+			throw new Exception("Objekat nije instanca klase Rezervacija!");
+		}
+	}
 
 }
