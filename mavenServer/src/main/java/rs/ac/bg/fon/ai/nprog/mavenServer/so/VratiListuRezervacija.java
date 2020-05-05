@@ -42,7 +42,11 @@ public class VratiListuRezervacija extends AbstractSystemOperation {
     @Override
     protected void validate(DomainObject object) throws Exception {
     }
-
+    
+/**
+ * Metoda koja vraca listu rezervacija.
+ * @return lista rezervacija
+ */
     public List<Reservation> getReservations() {
         return reservations;
     }
