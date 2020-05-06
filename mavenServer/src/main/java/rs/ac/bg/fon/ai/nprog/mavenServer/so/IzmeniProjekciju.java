@@ -31,9 +31,9 @@ public class IzmeniProjekciju extends AbstractSystemOperation {
 	 * @throws Exception ako dodje do greske prilikom azuriranja projekcije.
 	 */
 	@Override
-	protected void executeSpecificOperation(DomainObject object, List<String> columns, List<String> values)
+	protected void executeSpecificOperation(Object object, List<String> columns, List<String> values)
 			throws Exception {
-		dbb.updateDomainObject(object);
+		dbb.updateDomainObject((DomainObject)object);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class IzmeniProjekciju extends AbstractSystemOperation {
 	 * 
 	 */
 	@Override
-	protected void validate(DomainObject object) throws Exception {
+	protected void validate(Object object) throws Exception {
 		if (!(object instanceof Showtime)) {
 			throw new Exception("Objekat nije instanca klase Projekcija!");
 		}

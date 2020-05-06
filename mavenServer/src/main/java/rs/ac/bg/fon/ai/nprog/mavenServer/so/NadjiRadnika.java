@@ -34,7 +34,7 @@ public class NadjiRadnika extends AbstractSystemOperation {
 	 * @throws Exception ako dodje do greske prilikom trazenja korisnika (radnika).
 	 */
     @Override
-    protected void executeSpecificOperation(DomainObject object,List<String> columns, List<String> values) throws Exception {
+    protected void executeSpecificOperation(Object object,List<String> columns, List<String> values) throws Exception {
         List<DomainObject> users = dbb.getAllDomainObjectsWithWhere(new User(), columns, values);
         if (users.size() != 0) {
             user = (User) users.get(0);
@@ -51,7 +51,7 @@ public class NadjiRadnika extends AbstractSystemOperation {
 	 * 
 	 */
     @Override
-    protected void validate(DomainObject object) throws ValidationException {
+    protected void validate(Object object) throws ValidationException {
         if (!(object instanceof User)) {
             throw new ValidationException("Objekat nije instanca klase User.");
         }

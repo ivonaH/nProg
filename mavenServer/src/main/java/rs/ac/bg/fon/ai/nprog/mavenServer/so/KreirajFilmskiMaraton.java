@@ -31,7 +31,7 @@ public class KreirajFilmskiMaraton extends AbstractSystemOperation {
 	 * @throws Exception ako dodje do greske prilikom cuvanja filmskog maratona u bazi.
 	 */
     @Override
-    protected void executeSpecificOperation(DomainObject object, List<String> columns, List<String> values) throws Exception {
+    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
         MovieMarathon mm = (MovieMarathon) ((ArrayList<Object>) object).get(0);
         ArrayList<DomainObject> showtimes = (ArrayList<DomainObject>) ((ArrayList<Object>) object).get(1);
         mm.setMarathonId(dbb.generateId(mm));
@@ -49,7 +49,7 @@ public class KreirajFilmskiMaraton extends AbstractSystemOperation {
  	 * 
  	 */
     @Override
-    protected void validate(DomainObject object) throws Exception {
+    protected void validate(Object object) throws Exception {
     	if (!(object instanceof MovieMarathon)) {
             throw new Exception("Objekat nije instanca klase FilmskiMaraton!");
         }

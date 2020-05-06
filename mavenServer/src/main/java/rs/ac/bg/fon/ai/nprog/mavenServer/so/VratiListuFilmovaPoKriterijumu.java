@@ -5,7 +5,6 @@
  */
 package rs.ac.bg.fon.ai.nprog.mavenServer.so;
 
-import rs.ac.bg.fon.ai.nprog.mavenServer.database.DBBroker;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.*;
 import java.util.List;
 
@@ -32,7 +31,7 @@ public class VratiListuFilmovaPoKriterijumu extends AbstractSystemOperation {
   	 * @throws Exception ako dodje do greske prilikom trazenja filmova.
   	 */
     @Override
-    protected void executeSpecificOperation(DomainObject object, List<String> columns, List<String> values) throws Exception {
+    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
         movies = (List<Movie>) (Object) dbb.getAllDomainObjectsWithWhere(new Movie(), columns, values);
     }
 
@@ -40,7 +39,7 @@ public class VratiListuFilmovaPoKriterijumu extends AbstractSystemOperation {
      * Metoda koja vrsi validaciju.
      */
     @Override
-    protected void validate(DomainObject object) throws Exception {
+    protected void validate(Object object) throws Exception {
     }
     
     /**

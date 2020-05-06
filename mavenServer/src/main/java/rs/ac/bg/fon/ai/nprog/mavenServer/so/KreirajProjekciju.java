@@ -30,7 +30,7 @@ public class KreirajProjekciju extends AbstractSystemOperation {
 	 * @throws Exception ako dodje do greske prilikom cuvanja projekcije u bazi.
 	 */
     @Override
-    protected void executeSpecificOperation(DomainObject object, List<String> columns, List<String> values) throws Exception {
+    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
         Showtime showtime = (Showtime) object;
         showtime.setShowtimeId(dbb.generateId(showtime));
         dbb.saveDomainObject(showtime);
@@ -46,7 +46,7 @@ public class KreirajProjekciju extends AbstractSystemOperation {
  	 * 
  	 */
     @Override
-    protected void validate(DomainObject object) throws Exception {
+    protected void validate(Object object) throws Exception {
         if (!(object instanceof Showtime)) {
             throw new Exception("Objekat nije instanca klase Projekcija!");
         }

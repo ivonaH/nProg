@@ -32,7 +32,7 @@ public class VratiListuProjekcijaPoKriterijumu extends AbstractSystemOperation {
    	 * @throws Exception ako dodje do greske prilikom trazenja projekcija.
    	 */
     @Override
-    protected void executeSpecificOperation(DomainObject object, List<String> columns, List<String> values) throws Exception {
+    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
         showtimes = (List<Showtime>) (Object) dbb.getAllDomainObjectsWithWhere(new Showtime(), columns, values);
     }
 
@@ -42,7 +42,7 @@ public class VratiListuProjekcijaPoKriterijumu extends AbstractSystemOperation {
      * @throws Exception
      */
     @Override
-    protected void validate(DomainObject object) throws Exception {
+    protected void validate(Object object) throws Exception {
     }
 
     /**

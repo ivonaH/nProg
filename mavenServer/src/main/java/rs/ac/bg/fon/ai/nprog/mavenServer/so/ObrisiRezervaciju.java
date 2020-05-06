@@ -30,9 +30,9 @@ public class ObrisiRezervaciju extends AbstractSystemOperation {
 	 * @throws Exception ako dodje do greske prilikom brisanja rezervacije iz baze.
 	 */
 	@Override
-	protected void executeSpecificOperation(DomainObject object, List<String> columns, List<String> values)
+	protected void executeSpecificOperation(Object object, List<String> columns, List<String> values)
 			throws Exception {
-		dbb.deleteDomainObject(object);
+		dbb.deleteDomainObject((DomainObject)object);
 	}
 
 	 /**
@@ -45,7 +45,7 @@ public class ObrisiRezervaciju extends AbstractSystemOperation {
 		 * 
 		 */
 	@Override
-	protected void validate(DomainObject object) throws Exception {
+	protected void validate(Object object) throws Exception {
 		if (!(object instanceof Reservation)) {
 			throw new Exception("Objekat nije instanca klase Rezervacija!");
 		}

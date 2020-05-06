@@ -32,7 +32,7 @@ public class VratiListuMaratonaPoKriterijumu extends AbstractSystemOperation {
   	 * @throws Exception ako dodje do greske prilikom trazenja filmskih maratona.
   	 */
     @Override
-    protected void executeSpecificOperation(DomainObject object, List<String> columns, List<String> values) throws Exception {
+    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
         marathons =(List<MovieMarathon>)(Object) dbb.getAllDomainObjectsWithWhere(new MovieMarathon(), columns, values);
     }
 
@@ -40,7 +40,7 @@ public class VratiListuMaratonaPoKriterijumu extends AbstractSystemOperation {
      * Metoda koja vrsi validaciju.
      */
     @Override
-    protected void validate(DomainObject object) throws Exception {
+    protected void validate(Object object) throws Exception {
     }
 
     /**

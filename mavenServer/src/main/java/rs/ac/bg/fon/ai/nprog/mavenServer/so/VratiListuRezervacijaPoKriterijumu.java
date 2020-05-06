@@ -32,7 +32,7 @@ public class VratiListuRezervacijaPoKriterijumu extends AbstractSystemOperation 
 	 * @throws Exception ako dodje do greske prilikom trazenja rezervacija.
 	 */
     @Override
-    protected void executeSpecificOperation(DomainObject object, List<String> columns, List<String> values) throws Exception {
+    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
         reservations=(List<Reservation>)(Object) dbb.getAllDomainObjectsWithWhere(new Reservation(), columns, values);
     }
 
@@ -40,7 +40,7 @@ public class VratiListuRezervacijaPoKriterijumu extends AbstractSystemOperation 
      * Metoda koja vrsi validaciju.
      */
     @Override
-    protected void validate(DomainObject object) throws Exception {
+    protected void validate(Object object) throws Exception {
     }
 
     /**

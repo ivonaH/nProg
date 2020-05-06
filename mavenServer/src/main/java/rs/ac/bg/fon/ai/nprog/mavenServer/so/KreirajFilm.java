@@ -5,7 +5,6 @@
  */
 package rs.ac.bg.fon.ai.nprog.mavenServer.so;
 
-import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.DomainObject;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Movie;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class KreirajFilm extends AbstractSystemOperation {
 	 * @throws Exception ako dodje do greske prilikom cuvanja filma u bazi.
 	 */
     @Override
-    protected void executeSpecificOperation(DomainObject object, List<String> columns, List<String> values) throws Exception {
+    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
         Movie movie = (Movie) object;
         movie.setMovieId(dbb.generateId(movie));
         dbb.saveDomainObject(movie);
@@ -45,7 +44,7 @@ public class KreirajFilm extends AbstractSystemOperation {
 	 * 
 	 */
     @Override
-    protected void validate(DomainObject object) throws Exception {
+    protected void validate(Object object) throws Exception {
         if (!(object instanceof Movie)) {
             throw new Exception("Objekat nije instanca klase Film!");
         }

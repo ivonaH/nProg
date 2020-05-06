@@ -29,8 +29,8 @@ public class ObrisiProjekciju extends AbstractSystemOperation {
 	 * @throws Exception ako dodje do greske prilikom brisanja objekta iz baze.
 	 */
     @Override
-    protected void executeSpecificOperation(DomainObject object, List<String> columns, List<String> values) throws Exception {
-        dbb.deleteDomainObject(object);
+    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
+        dbb.deleteDomainObject((DomainObject)object);
     }
 
     /**
@@ -43,7 +43,7 @@ public class ObrisiProjekciju extends AbstractSystemOperation {
    	 * 
    	 */
     @Override
-    protected void validate(DomainObject object) throws Exception {
+    protected void validate(Object object) throws Exception {
         if (!(object instanceof Showtime)) {
             throw new Exception("Objekat nije instanca klase Projekcija!");
         }

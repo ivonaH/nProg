@@ -5,7 +5,6 @@
  */
 package rs.ac.bg.fon.ai.nprog.mavenServer.so;
 
-import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.DomainObject;
 import rs.ac.bg.fon.ai.nprog.mavenServer.database.DBBroker;
 import rs.ac.bg.fon.ai.nprog.mavenServer.database.DatabaseConnection;
 import java.util.List;
@@ -46,7 +45,7 @@ public abstract class AbstractSystemOperation {
 	 * @param values  Predstavlja listu u kojoj ce biti zadati vrednosti kolona.
 	 * @throws Exception ako se operacija ne izvrsi uspesno.
 	 */
-	public final void executeOperation(DomainObject object, List<String> columns, List<String> values) throws Exception {
+	public final void executeOperation(Object object, List<String> columns, List<String> values) throws Exception {
 		try {
 			validate(object);
 			DatabaseConnection.getInstance().getConnection().setAutoCommit(false);
@@ -68,7 +67,7 @@ public abstract class AbstractSystemOperation {
 	 * @param values  Predstavlja listu u kojoj ce biti zadati vrednosti kolona.
 	 * @throws Exception ako se operacija ne izvrsi uspesno.
 	 */
-	protected abstract void executeSpecificOperation(DomainObject object, List<String> columns, List<String> values)
+	protected abstract void executeSpecificOperation(Object object, List<String> columns, List<String> values)
 			throws Exception;
 
 	/**
@@ -77,5 +76,5 @@ public abstract class AbstractSystemOperation {
 	 *  @param object  Objekat klase nad kojim vrsimo operaciju.
 	 *  @throws Exception ako se validacija ne izvrsi uspesno.
 	 */
-	protected abstract void validate(DomainObject object) throws Exception;
+	protected abstract void validate(Object object) throws Exception;
 }
