@@ -105,7 +105,7 @@ public class MovieMarathonTest {
 	public void testEqualsObjectIsti() {
 		MovieMarathon mm1 = new MovieMarathon();
 mm1.setMarathonId(1);	
-assertFalse(mm.equals(mm1));
+assertTrue(mm.equals(mm1));
 	}
 	
 }
