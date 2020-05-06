@@ -20,17 +20,29 @@ import java.util.List;
 public class ObrisiProjekciju extends AbstractSystemOperation {
 
 	/**
+	 * objekat koji zelimo da obrisemo.
+	 */
+	Showtime showtime;
+
+	/**
+	 * Parametrizovani konstruktor metode obrisi projekciju.
+	 * 
+	 * @param object koji zelimo da obrisemo
+	 * @throws Exception ako primljeni objekat nije instanca klase Showtime
+	 */
+	public ObrisiProjekciju(Object object) throws Exception {
+		validate(object);
+		this.showtime = (Showtime) object;
+	}
+	
+	/**
 	 * Metoda koja brise projekciju iz baze.
 	 * 
-	 * 
-	 * @param object  Objekat koji zelimo da obrisemo iz baze.
-	 * @param columns null
-	 * @param values  null
 	 * @throws Exception ako dodje do greske prilikom brisanja objekta iz baze.
 	 */
     @Override
-    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
-        dbb.deleteDomainObject((DomainObject)object);
+    protected void executeSpecificOperation() throws Exception {
+        dbb.deleteDomainObject(showtime);
     }
 
     /**
@@ -42,7 +54,6 @@ public class ObrisiProjekciju extends AbstractSystemOperation {
    	 * @throws Exception ako objekat nije instanca klase Showtime.
    	 * 
    	 */
-    @Override
     protected void validate(Object object) throws Exception {
         if (!(object instanceof Showtime)) {
             throw new Exception("Objekat nije instanca klase Projekcija!");

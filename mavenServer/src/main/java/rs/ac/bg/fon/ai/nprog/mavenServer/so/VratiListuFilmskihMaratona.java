@@ -26,22 +26,13 @@ public class VratiListuFilmskihMaratona extends AbstractSystemOperation {
     /**
 	 * Metoda koja vraca listu filmskih maratona iz baze.
 	 * 
-	 * @param object  Objekat koji zelimo da pronadjemo.
-	 * @param columns null
-	 * @param values null
 	 * @throws Exception ako dodje do greske prilikom trazenja filmskih maratona.
 	 */
     @Override
-    protected void executeSpecificOperation(Object object,List<String> columns, List<String> values) throws Exception {
+    protected void executeSpecificOperation() throws Exception {
         movieMarathons = (List<MovieMarathon>) (Object) dbb.getAllDomainObjects(new MovieMarathon());
     }
 
-    /**
-     * Metoda koja vrsi validaciju.
-     */
-    @Override
-    protected void validate(Object object) throws Exception {
-    }
 /**
  * Metoda koja vraca filmske maratone.
  * @return lista filmskih maratona.

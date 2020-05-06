@@ -6,49 +6,69 @@
 package rs.ac.bg.fon.ai.nprog.mavenServer.so;
 
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
-*
-* @author Ivona
-* 
-* @version 1.0
-* 
-*          Klasa VratiListuFilmskihMaratona predstavlja sistemsku operaciju koja vraca listu filmskih maratona iz baze po odredjenom kritrerijumu.
-*          Nasledjuje AbstractSystemOperation.
-*/
+ *
+ * @author Ivona
+ * 
+ * @version 1.0
+ * 
+ *          Klasa VratiListuFilmskihMaratona predstavlja sistemsku operaciju
+ *          koja vraca listu filmskih maratona iz baze po odredjenom
+ *          kritrerijumu. Nasledjuje AbstractSystemOperation.
+ */
 public class VratiListuMaratonaPoKriterijumu extends AbstractSystemOperation {
+	/**
+	 * Predstavlja listu u kojoj ce biti zadati nazivi kolona po kojima trazimo
+	 * listu maratona.
+	 */
+	List<String> columns;
+	/**
+	 * Predstavlja listu u kojoj ce biti zadati vrednosti kolona po kojima trazimo
+	 * listu maratona.
+	 */
+	List<String> values;
 	/**
 	 * Lista filmskih maratona.
 	 */
-    private List<MovieMarathon> marathons;
+	private List<MovieMarathon> marathons;
 
-    /**
-  	 * Metoda koja vraca listu filmskih maratona iz baze po odredjenom kritrerijumu.
-  	 * 
-  	 * @param object  Objekat koji zelimo da pronadjemo.
-  	 * @param columns Predstavlja listu u kojoj ce biti zadati nazivi kolona po kojima trazimo listu maratona.
-	 * @param values  Predstavlja listu u kojoj ce biti zadati vrednosti kolona po kojima trazimo listu maratona.
-  	 * @throws Exception ako dodje do greske prilikom trazenja filmskih maratona.
-  	 */
-    @Override
-    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
-        marathons =(List<MovieMarathon>)(Object) dbb.getAllDomainObjectsWithWhere(new MovieMarathon(), columns, values);
-    }
+/**
+ * Parametrizovani konstruktor metode koja vraca listu filmskih maratona po odredjenom kriterijumu.
+ * 
+ * @param columns Lista u kojoj su zadati nazivi kolona po kojima trazimo listu maratone.
+ * @param values  Lista u kojoj su zadate vrednosti kolona po kojima trazimo maratone.
+ * @throws Exception
+ */
+	public VratiListuMaratonaPoKriterijumu(List<String> columns, List<String> values) throws Exception {
+		this.columns = columns;
+		this.values = values;
+	}
 
-    /**
-     * Metoda koja vrsi validaciju.
-     */
-    @Override
-    protected void validate(Object object) throws Exception {
-    }
+	/**
+	 * Metoda koja vraca listu filmskih maratona iz baze po odredjenom kritrerijumu.
+	 * 
+	 * @param object Objekat koji zelimo da pronadjemo.
+	 * 
+	 * @throws Exception ako dodje do greske prilikom trazenja filmskih maratona.
+	 */
+	@Override
+	protected void executeSpecificOperation() throws Exception {
+		marathons = (List<MovieMarathon>) (Object) dbb.getAllDomainObjectsWithWhere(new MovieMarathon(), columns,
+				values);
+	}
 
-    /**
-     * Metoda koja vraca filmske maratone.
-     * @return lista filmskih maratona.
-     */
-    public List<MovieMarathon> getMarathons() {
-        return marathons;
-    }
+
+	/**
+	 * Metoda koja vraca filmske maratone.
+	 * 
+	 * @return lista filmskih maratona.
+	 */
+	public List<MovieMarathon> getMarathons() {
+		return marathons;
+	}
 
 }

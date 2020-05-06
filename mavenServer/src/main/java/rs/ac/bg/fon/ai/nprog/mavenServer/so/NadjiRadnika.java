@@ -11,58 +11,62 @@ import rs.ac.bg.fon.ai.nprog.mavenCommonLib.exception.ValidationException;
 import java.util.List;
 
 /**
-*
-* @author Ivona
-* 
-* @version 1.0
-* 
-*          Klasa NadjiRadnika predstavlja sistemsku operaciju kojom se pronalazi korisnik u bazi.
-*          Nasledjuje AbstractSystemOperation.
-*/
-public class NadjiRadnika extends AbstractSystemOperation {
-/**
- * Korisnik (radnik).
+ *
+ * @author Ivona
+ * 
+ * @version 1.0
+ * 
+ *          Klasa NadjiRadnika predstavlja sistemsku operaciju kojom se
+ *          pronalazi korisnik u bazi. Nasledjuje AbstractSystemOperation.
  */
-    private User user;
+public class NadjiRadnika extends AbstractSystemOperation {
+	/**
+	 * Predstavlja listu u kojoj ce biti zadati nazivi kolona po kojima trazimo
+	 * korisnika.
+	 */
+	List<String> columns;
+	/**
+	 * Predstavlja listu u kojoj ce biti zadati vrednosti kolona po kojima trazimo
+	 * korisnika.
+	 */
+	List<String> values;
+	/**
+	 * Korisnik (radnik).
+	 */
+	private User user;
+	/**
+	 * Parametrizovani konstruktor metode koja vraca korisnika po odredjenom kriterijumu.
+	 * 
+	 * @param columns Lista u kojoj su zadati nazivi kolona po kojima trazimo korisnika.
+	 * @param values  Lista u kojoj su zadate vrednosti kolona po kojima trazimo korisnika.
+	 * @throws Exception
+	 */
+	public NadjiRadnika(List<String> columns, List<String> values) {
+		this.columns = columns;
+		this.values = values;
+	}
+
 	/**
 	 * Metoda koja pronalazi korisnika (radnika) u bazi.
 	 * 
 	 * 
-	 * @param object  Objekat koji zelimo da pronadjemo.
-	 * @param columns Predstavlja listu u kojoj ce biti zadati nazivi kolona po kojima trazimo korisnika (radnika).
-	 * @param values  Predstavlja listu u kojoj ce biti zadati vrednosti kolona po kojima trazimo korisnika (radnika).
 	 * @throws Exception ako dodje do greske prilikom trazenja korisnika (radnika).
 	 */
-    @Override
-    protected void executeSpecificOperation(Object object,List<String> columns, List<String> values) throws Exception {
-        List<DomainObject> users = dbb.getAllDomainObjectsWithWhere(new User(), columns, values);
-        if (users.size() != 0) {
-            user = (User) users.get(0);
-        }
-    }
+	@Override
+	protected void executeSpecificOperation() throws Exception {
+		List<DomainObject> users = dbb.getAllDomainObjectsWithWhere(new User(), columns, values);
+		if (users.size() != 0) {
+			user = (User) users.get(0);
+		}
+	}
 
-    /**
-	 * Metoda koja vrsi validaciju da li je objekat instanca klase
-	 * User.
+	/**
+	 * Metoda koja vraca korisnika.
 	 * 
-	 * @param object Objekat za koji zelimo da proverimo da li je instanca klase
-	 *               User.
-	 * @throws Exception ako objekat nije instanca klase User.
-	 * 
+	 * @return korisnik (radnik)
 	 */
-    @Override
-    protected void validate(Object object) throws ValidationException {
-        if (!(object instanceof User)) {
-            throw new ValidationException("Objekat nije instanca klase User.");
-        }
-    }
-
-    /**
-     * Metoda koja vraca korisnika.
-     * @return korisnik (radnik)
-     */
-    public User getUser() {
-        return user;
-    }
+	public User getUser() {
+		return user;
+	}
 
 }

@@ -6,6 +6,10 @@
 package rs.ac.bg.fon.ai.nprog.mavenServer.so;
 
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Movie;
+import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.MovieMarathon;
+import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Showtime;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,17 +23,27 @@ import java.util.List;
 */
 public class KreirajFilm extends AbstractSystemOperation {
 	/**
+	 * objekat koji zelimo da sacuvamo.
+	 */
+	Movie movie;
+
+	/**
+	 * Parametrizovani konstruktor metode kreiraj film.
+	 * 
+	 * @param object koji zelimo da sacuvamo
+	 * @throws Exception ako primljeni objekat nije instanca klase Movie
+	 */
+	public KreirajFilm(Object object) throws Exception {
+		validate(object);
+		this.movie = (Movie) object;
+	}
+	/**
 	 * Metoda koja cuva film u bazi.
 	 * 
-	 * 
-	 * @param object  Objekat koji zelimo da sacuvamo u bazi.
-	 * @param columns null
-	 * @param values  null
 	 * @throws Exception ako dodje do greske prilikom cuvanja filma u bazi.
 	 */
     @Override
-    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
-        Movie movie = (Movie) object;
+    protected void executeSpecificOperation() throws Exception {
         movie.setMovieId(dbb.generateId(movie));
         dbb.saveDomainObject(movie);
     }
@@ -43,7 +57,6 @@ public class KreirajFilm extends AbstractSystemOperation {
 	 * @throws Exception ako objekat nije instanca klase Movie.
 	 * 
 	 */
-    @Override
     protected void validate(Object object) throws Exception {
         if (!(object instanceof Movie)) {
             throw new Exception("Objekat nije instanca klase Film!");

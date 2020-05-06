@@ -45,11 +45,10 @@ public abstract class AbstractSystemOperation {
 	 * @param values  Predstavlja listu u kojoj ce biti zadati vrednosti kolona.
 	 * @throws Exception ako se operacija ne izvrsi uspesno.
 	 */
-	public final void executeOperation(Object object, List<String> columns, List<String> values) throws Exception {
+	public final void executeOperation() throws Exception {
 		try {
-			validate(object);
 			DatabaseConnection.getInstance().getConnection().setAutoCommit(false);
-			executeSpecificOperation(object, columns, values);
+			executeSpecificOperation();
 			DatabaseConnection.getInstance().getConnection().commit();
 		} catch (Exception ex) {
 			DatabaseConnection.getInstance().getConnection().rollback();
@@ -67,14 +66,7 @@ public abstract class AbstractSystemOperation {
 	 * @param values  Predstavlja listu u kojoj ce biti zadati vrednosti kolona.
 	 * @throws Exception ako se operacija ne izvrsi uspesno.
 	 */
-	protected abstract void executeSpecificOperation(Object object, List<String> columns, List<String> values)
+	protected abstract void executeSpecificOperation()
 			throws Exception;
 
-	/**
-	 * Apstrakna metoda koja vrsi validaciju domenskog objekta.
-	 * 
-	 *  @param object  Objekat klase nad kojim vrsimo operaciju.
-	 *  @throws Exception ako se validacija ne izvrsi uspesno.
-	 */
-	protected abstract void validate(Object object) throws Exception;
 }

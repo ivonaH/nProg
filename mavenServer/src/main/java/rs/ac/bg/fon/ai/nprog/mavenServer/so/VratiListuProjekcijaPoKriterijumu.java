@@ -23,26 +23,39 @@ public class VratiListuProjekcijaPoKriterijumu extends AbstractSystemOperation {
  */
     private List<Showtime> showtimes;
 
+    /** Predstavlja listu u kojoj ce biti zadati nazivi kolona po kojima trazimo
+ 	 * listu projekcija.
+ 	 */
+ 	List<String> columns;
+ 	/**
+ 	 * Predstavlja listu u kojoj ce biti zadati vrednosti kolona po kojima trazimo
+ 	 * listu projekcija.
+ 	 */
+ 	List<String> values;
+
+
+ /**
+ * Parametrizovani konstruktor metode koja vraca listu filmova po odredjenom kriterijumu.
+ * 
+ * @param columns Lista u kojoj su zadati nazivi kolona po kojima trazimo listu filmova.
+ * @param values  Lista u kojoj su zadate vrednosti kolona po kojima trazimo filmove.
+ * @throws Exception
+ */
+ 	public VratiListuProjekcijaPoKriterijumu(List<String> columns, List<String> values) throws Exception {
+ 		this.columns = columns;
+ 		this.values = values;
+ 	}
+
+    
     /**
    	 * Metoda koja vraca listu projekcija iz baze po odredjenom kritrerijumu.
    	 * 
    	 * @param object  Objekat koji zelimo da pronadjemo.
-  	 * @param columns Predstavlja listu u kojoj ce biti zadati nazivi kolona po kojima trazimo listu projekcija.
-	 * @param values  Predstavlja listu u kojoj ce biti zadati vrednosti kolona po kojima trazimo listu projekcija.
    	 * @throws Exception ako dodje do greske prilikom trazenja projekcija.
    	 */
     @Override
-    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
+    protected void executeSpecificOperation() throws Exception {
         showtimes = (List<Showtime>) (Object) dbb.getAllDomainObjectsWithWhere(new Showtime(), columns, values);
-    }
-
-    /**
-     * Metoda koja vrsi validaciju
-     * @param object
-     * @throws Exception
-     */
-    @Override
-    protected void validate(Object object) throws Exception {
     }
 
     /**

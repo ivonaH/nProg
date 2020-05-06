@@ -26,22 +26,13 @@ public class VratiListuRezervacija extends AbstractSystemOperation {
     /**
 	 * Metoda koja vraca listu rezervacija iz baze.
 	 * 
-	 * @param object  Objekat koji zelimo da pronadjemo.
-	 * @param columns null
-	 * @param values null
 	 * @throws Exception ako dodje do greske prilikom trazenja rezervacija.
 	 */
     @Override
-    protected void executeSpecificOperation(Object object,List<String> columns, List<String> values) throws Exception {
+    protected void executeSpecificOperation() throws Exception {
         reservations = (List< Reservation>) (Object) dbb.getAllDomainObjectsWithJoin(new Reservation());
     }
 
-    /**
-     * Metoda koja vrsi validaciju.
-     */
-    @Override
-    protected void validate(Object object) throws Exception {
-    }
     
 /**
  * Metoda koja vraca listu rezervacija.

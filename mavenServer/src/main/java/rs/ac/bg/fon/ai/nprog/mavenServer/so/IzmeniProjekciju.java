@@ -20,32 +20,40 @@ import java.util.List;
  *          podatke u bazi u projekciji. Nasledjuje AbstractSystemOperation.
  */
 public class IzmeniProjekciju extends AbstractSystemOperation {
+	/**
+	 * objekat koji zelimo da izmenimo
+	 */
+	Showtime showtime;
+
+	/**
+	 * Parametrizovani konstruktor metode izmeni projekciju.
+	 * 
+	 * @param object koji zelimo da izmenimo
+	 * @throws Exception ako primljeni objekat nije instanca klase Showtime
+	 */
+	public IzmeniProjekciju(Object object) throws Exception {
+		validate(object);
+		this.showtime = (Showtime) object;
+	}
 
 	/**
 	 * Metoda kojom se azurira projekciju u bazi.
 	 * 
-	 * 
-	 * @param object  Objekat koji zelimo da izmenimo.
-	 * @param columns Predstavlja listu u kojoj ce biti zadati nazivi kolona koje cemo azurirati.
-	 * @param values  Predstavlja listu u kojoj ce biti zadati vrednosti kolona na koje cemo postavljati zadate kolone.
 	 * @throws Exception ako dodje do greske prilikom azuriranja projekcije.
 	 */
 	@Override
-	protected void executeSpecificOperation(Object object, List<String> columns, List<String> values)
-			throws Exception {
-		dbb.updateDomainObject((DomainObject)object);
+	protected void executeSpecificOperation() throws Exception {
+		dbb.updateDomainObject(showtime);
 	}
 
 	/**
-	 * Metoda koja vrsi validaciju da li je objekat instanca klase
-	 * Showtime.
+	 * Metoda koja vrsi validaciju da li je objekat instanca klase Showtime.
 	 * 
 	 * @param object Objekat za koji zelimo da proverimo da li je instanca klase
 	 *               Showtime.
 	 * @throws Exception ako objekat nije instanca klase Showtime.
 	 * 
 	 */
-	@Override
 	protected void validate(Object object) throws Exception {
 		if (!(object instanceof Showtime)) {
 			throw new Exception("Objekat nije instanca klase Projekcija!");

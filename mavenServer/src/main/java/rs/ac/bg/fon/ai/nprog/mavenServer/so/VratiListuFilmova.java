@@ -25,13 +25,10 @@ public class VratiListuFilmova extends AbstractSystemOperation {
     /**
 	 * Metoda koja vraca listu filmova iz baze.
 	 * 
-	 * @param object  Objekat koji zelimo da pronadjemo.
-	 * @param columns null
-	 * @param values null
 	 * @throws Exception ako dodje do greske prilikom trazenja filmova.
 	 */
     @Override
-    protected void executeSpecificOperation(Object object,List<String> columns, List<String> values) throws Exception {
+    protected void executeSpecificOperation() throws Exception {
         movies = (List<Movie>) (Object) dbb.getAllDomainObjects(new Movie());
 
     }
@@ -43,11 +40,5 @@ public class VratiListuFilmova extends AbstractSystemOperation {
         return movies;
     }
 
-    /**
-     * Metoda koja vrsi validaciju.
-     */
-	@Override
-	protected void validate(Object object) throws Exception {
-	}
 
 }

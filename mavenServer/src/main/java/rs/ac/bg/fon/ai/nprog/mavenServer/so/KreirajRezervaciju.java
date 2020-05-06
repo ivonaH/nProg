@@ -18,19 +18,30 @@ import java.util.List;
 *          Nasledjuje AbstractSystemOperation.
 */
 public class KreirajRezervaciju extends AbstractSystemOperation {
+	/**
+	 * objekat koji zelimo da sacuvamo.
+	 */
+	Reservation reservation;
 
+	/**
+	 * Parametrizovani konstruktor metode kreiraj rezervaciju.
+	 * 
+	 * @param object koji zelimo da sacuvamo
+	 * @throws Exception ako primljeni objekat nije instanca klase Reservation
+	 */
+	public KreirajRezervaciju(Object object) throws Exception {
+		validate(object);
+		this.reservation = (Reservation) object;
+	}
+	
 	/**
 	 * Metoda koja cuva rezervaciju u bazi.
 	 * 
-	 * 
-	 * @param object  Objekat koji zelimo da sacuvamo u bazi.
-	 * @param columns null
-	 * @param values  null
+	 *
 	 * @throws Exception ako dodje do greske prilikom cuvanja rezervacije u bazi.
 	 */
     @Override
-    protected void executeSpecificOperation(Object object, List<String> columns, List<String> values) throws Exception {
-        Reservation reservation = (Reservation) object;
+    protected void executeSpecificOperation() throws Exception {
         reservation.setReservationId(dbb.generateId(reservation));
         dbb.saveDomainObject(reservation);
     }
@@ -44,7 +55,6 @@ public class KreirajRezervaciju extends AbstractSystemOperation {
  	 * @throws Exception ako objekat nije instanca klase Reservation.
  	 * 
  	 */
-    @Override
     protected void validate(Object object) throws Exception {
         if (!(object instanceof Reservation)) {
             throw new Exception("Objekat nije instanca klase Rezervacija!");
