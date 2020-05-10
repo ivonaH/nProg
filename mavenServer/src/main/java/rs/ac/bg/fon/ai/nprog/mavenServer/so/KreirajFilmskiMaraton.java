@@ -41,7 +41,7 @@ public class KreirajFilmskiMaraton extends AbstractSystemOperation {
 	public KreirajFilmskiMaraton(Object object) throws Exception {
 		validate(((ArrayList<Object>) object).get(0));
 		this.object=object;
-		this.mm = (MovieMarathon) object;
+		this.mm = (MovieMarathon) ((ArrayList<Object>) object).get(0);
 	}
 
 	/**
