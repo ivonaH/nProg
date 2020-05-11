@@ -1,0 +1,52 @@
+[
+  {
+    "user": "ivona",
+    "date": "11.05.2020 23:25:31",
+    "operation": 1,
+    "status": "SUCCESS"
+  },
+  {
+    "user": "ivona",
+    "date": "11.05.2020 23:29:17",
+    "operation": 7,
+    "status": "SUCCESS"
+  },
+  {
+    "user": "ivona",
+    "date": "11.05.2020 23:29:45",
+    "operation": 4,
+    "status": "ERROR",
+    "error_message": "No operations allowed after connection closed."
+  },
+  {
+    "user": "ivona",
+    "date": "11.05.2020 23:39:41",
+    "operation": 1,
+    "status": "SUCCESS"
+  },
+  {
+    "user": "ivona",
+    "date": "11.05.2020 23:39:50",
+    "operation": 7,
+    "status": "SUCCESS"
+  },
+  {
+    "user": "ivona",
+    "date": "11.05.2020 23:40:19",
+    "operation": 16,
+    "status": "SUCCESS"
+  },
+  {
+    "user": "ivona",
+    "date": "11.05.2020 23:46:22",
+    "operation": 1,
+    "status": "SUCCESS"
+  },
+  {
+    "user": "ivona",
+    "date": "11.05.2020 23:46:41",
+    "operation": 1,
+    "status": "ERROR",
+    "error_message": "Korisnik sa tim podacima je vec ulogovan."
+  }
+]

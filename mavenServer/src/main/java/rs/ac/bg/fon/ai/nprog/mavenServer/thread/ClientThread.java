@@ -6,12 +6,14 @@
 package rs.ac.bg.fon.ai.nprog.mavenServer.thread;
 
 import rs.ac.bg.fon.ai.nprog.mavenServer.controller.Controller;
+import rs.ac.bg.fon.ai.nprog.mavenServer.history.History;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.transfer.RequestObject;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.transfer.ResponseObject;
@@ -44,6 +46,7 @@ public class ClientThread extends Thread {
                 RequestObject requestObject = (RequestObject) objectInputStream.readObject();
                 ResponseObject responseObject = handleRequest(requestObject);
                 responseObject.setOperation(requestObject.getOperation());
+                History.getInstance().saveToHistory(loginUser, requestObject, responseObject, new Date());
                 sendResponse(responseObject);
 
             }
