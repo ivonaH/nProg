@@ -51,7 +51,7 @@ public class IzmeniProjekciju extends AbstractSystemOperation {
 	 * 
 	 * @param object Objekat za koji zelimo da proverimo da li je instanca klase
 	 *               Showtime.
-	 * @throws Exception ako objekat nije instanca klase Showtime.
+	 * @throws ValidationException ako objekat nije instanca klase Showtime.
 	 * 
 	 */
 	protected void validate(Object object) throws Exception {

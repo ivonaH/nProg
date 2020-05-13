@@ -7,7 +7,6 @@ package rs.ac.bg.fon.ai.nprog.mavenServer.so;
 
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.*;
 
-import rs.ac.bg.fon.ai.nprog.mavenCommonLib.exception.ValidationException;
 import java.util.List;
 
 /**
