@@ -68,5 +68,10 @@ public abstract class AbstractSystemOperation {
 	 */
 	protected abstract void executeSpecificOperation()
 			throws Exception;
+	
+	
+	public DBBroker getDbb() {
+		return dbb;
+	}
 
 }
