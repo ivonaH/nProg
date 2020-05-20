@@ -100,7 +100,7 @@ public class Showtime implements DomainObject, Serializable {
 	 * 
 	 * @param showtimeId indentifikator projekcije
 	 */
-	Showtime(int showtimeId) {
+	public Showtime(int showtimeId) {
 		this.showtimeId = showtimeId;
 	}
 
