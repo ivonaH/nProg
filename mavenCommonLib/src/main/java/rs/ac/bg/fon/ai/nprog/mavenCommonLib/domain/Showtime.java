@@ -344,7 +344,7 @@ public class Showtime implements DomainObject, Serializable {
 	public String toString() {
 
 		SimpleDateFormat stf = new SimpleDateFormat("HH:mm:ss");
-		return stf.format(time) + " " + hall.getName();
+			return stf.format(time) + " " + hall.getName();
 	}
 
 	/**
@@ -372,10 +372,12 @@ public class Showtime implements DomainObject, Serializable {
 	}
 
 	/**
-	 * Proverava da li su dve projekcije iste. 
-	 * Poredi projekcije po atributu <i><b> showtimeId</b></i>
+	 * Proverava da li su dve projekcije iste. Poredi projekcije po atributu <i><b>
+	 * showtimeId</b></i>
+	 * 
 	 * @param obj Showtime koju zelimo da uporedimo sa zeljenom projekcijom.
-	 * @return true ako su dve projekcije iste po ovim parametrima, ako nisu vraca <b> false</b>.
+	 * @return true ako su dve projekcije iste po ovim parametrima, ako nisu vraca
+	 *         <b> false</b>.
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -390,7 +392,5 @@ public class Showtime implements DomainObject, Serializable {
 			return false;
 		return true;
 	}
-	
-	
 
 }
