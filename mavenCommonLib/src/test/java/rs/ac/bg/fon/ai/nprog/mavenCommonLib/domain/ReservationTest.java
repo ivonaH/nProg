@@ -116,4 +116,43 @@ public class ReservationTest {
 		assertEquals(null, reservation.getSortCondition());
 	}
 
+	@Test
+	public void testEqualsObjectNull() {
+		assertFalse(reservation.equals(null));
+	}
+
+	@Test
+	public void testEqualsObjectDrugaKlasa() {
+		assertFalse(reservation.equals(new Object()));
+	}
+
+	@Test
+	public void testEqualsObjectNisuIsti() {
+		Reservation r2=new Reservation();
+		r2.setReservationId(12);
+		assertFalse(reservation.equals(r2));
+	}
+
+	@Test
+	public void testEqualsObjectIsti() {
+		Reservation reservation2=new Reservation();
+		reservation2.setEmail("pera@gmail.com");
+		reservation2.setNameLastname("Pera Peric");
+		reservation2.setReservationId(1);
+		User user1=new User("iv", "iv12");
+		user1.setUserId(11);
+		reservation2.setUser(user1);
+		
+		//Showtime...
+		Showtime showtime=new Showtime();
+		showtime.setShowtimeId(12);
+
+		Movie movie=new Movie(122, "Film1");
+		showtime.setMovie(movie);
+		reservation2.setShowtime(showtime);
+		
+		
+		assertTrue(reservation.equals(reservation2));
+	}
+	
 }

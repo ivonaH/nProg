@@ -314,4 +314,46 @@ public class Reservation implements DomainObject, Serializable  {
         return null;
     }
 
+	/**
+	 * Proverava da li su dve rezervacije iste. 
+	 * Poredi rezervacije po atributima: <i><b> email, nameLstname, reservationId, showtime i user. </b></i>
+	 * @param obj Reservation koju zelimo da uporedimo sa zeljenom rezervacijom.
+	 * @return true ako su dve rezervacije iste po ovim parametrima, ako nisu vraca <b> false</b>.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reservation other = (Reservation) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (nameLastname == null) {
+			if (other.nameLastname != null)
+				return false;
+		} else if (!nameLastname.equals(other.nameLastname))
+			return false;
+		if (reservationId != other.reservationId)
+			return false;
+		if (showtime == null) {
+			if (other.showtime != null)
+				return false;
+		} else if (!showtime.equals(other.showtime))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
+	}
+
+    
+    
 }

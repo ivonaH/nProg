@@ -7,6 +7,7 @@ package rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain;
 
 import java.io.Serializable;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -341,7 +342,9 @@ public class Showtime implements DomainObject, Serializable {
 	 */
 	@Override
 	public String toString() {
-		return time + " " + hall.getName();
+
+		SimpleDateFormat stf = new SimpleDateFormat("HH:mm:ss");
+		return stf.format(time) + " " + hall.getName();
 	}
 
 	/**
