@@ -4,10 +4,8 @@ import static org.junit.Assert.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -16,18 +14,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Hall;
+import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Genre;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Movie;
-import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.MovieMarathon;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Reservation;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Showtime;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.User;
 import rs.ac.bg.fon.ai.nprog.mavenServer.configuration.Configuration;
 import rs.ac.bg.fon.ai.nprog.mavenServer.database.DatabaseConnection;
 
-public class ObrisiRezervacijuTest {
-	ObrisiRezervaciju obrisiRezervaciju;
-
+public class VratiListuRezervacijaTest {
+	VratiListuRezervacija vratiListuRezervacija;
 	private static Connection connection;
 
 	@BeforeClass
@@ -50,6 +46,8 @@ public class ObrisiRezervacijuTest {
 
 	@Before
 	public void setUp() throws Exception {
+		vratiListuRezervacija=new VratiListuRezervacija();
+		
 		String query = "INSERT INTO user VALUES(1,'ivona','Ivona','Heldrih','ivona123')";
 		Statement statement = connection.createStatement();
 		statement.executeUpdate(query);
@@ -66,6 +64,12 @@ public class ObrisiRezervacijuTest {
 		query="INSERT into reservation values (1,'Pera Peric','pera@gmail.com',1,1)";
 		statement.executeUpdate(query);
 
+		query="INSERT into reservation values (2,'Ana Anic','ana@gmail.com',1,1)";
+		statement.executeUpdate(query);
+		
+		query="INSERT into reservation values (3,'Kaca Kacic','kaca@gmail.com',1,1)";
+		statement.executeUpdate(query);
+		
 		connection.commit();
 		statement.close();
 
@@ -73,7 +77,7 @@ public class ObrisiRezervacijuTest {
 
 	@After
 	public void tearDown() throws Exception {
-		obrisiRezervaciju = null;
+		vratiListuRezervacija= null;
 
 		String query = "Delete from reservation";
 		Statement statement = connection.createStatement();
@@ -100,37 +104,24 @@ public class ObrisiRezervacijuTest {
 		statement.close();
 	}
 
-	@Test(expected = Exception.class)
-	public void testObrisiRezervacijuNijeInstancaKlase() throws Exception {
-		Movie movie = new Movie();
-		obrisiRezervaciju = new ObrisiRezervaciju(movie);
-	}
 
 	@Test
-	public void testObrisiRezervacijuUspesno() throws Exception {
-		Reservation reservation = new Reservation(1,"Pera Peric", "pera@gmail.com", new User(1), new Showtime(1));
+	public void VratiListuRezervacijaTest() throws Exception {
+		vratiListuRezervacija.executeOperation();
+		List<Reservation> reservationsDb=vratiListuRezervacija.getReservations();
+		
+		List<Reservation> reservations=new ArrayList<>();
+		
+		Movie movie=new Movie(1, "Movie1", Genre.adventure, "Director 1", 2020, 120, new User(1));
+		
+		Showtime showtime = new Showtime(1);
+		showtime.setMovie(movie);
+		reservations.add(new Reservation(1,"Pera Peric","pera@gmail.com",new User(1),showtime));
+		reservations.add(new Reservation(2,"Ana Anic","ana@gmail.com",new User(1), showtime));
+		reservations.add(new Reservation(3,"Kaca Kacic","kaca@gmail.com",new User(1), showtime));
 
-		obrisiRezervaciju = new ObrisiRezervaciju(reservation);
-		obrisiRezervaciju.executeOperation();
-
-		String querySelect = "SELECT * FROM reservation Where reservationId=1";
-		Statement statement = connection.createStatement();
-		ResultSet rs = statement.executeQuery(querySelect);
-		List<Reservation> list = new ArrayList<>();
-
-		while (rs.next()) {
-			int reservationId = rs.getInt("ReservationId");
-			String nameLastname = rs.getString("NameLastname");
-			String email = rs.getString("Email");
-			int userId = rs.getInt("UserId");
-			int showtimeId = rs.getInt("ShowtimeId");
-
-			list.add(new Reservation(reservationId, nameLastname, email, new User(userId), new Showtime(showtimeId)));
-
-		}
-
-		assertTrue(list.isEmpty());
-
+		
+		assertEquals(reservations,reservationsDb);
 	}
 
 }

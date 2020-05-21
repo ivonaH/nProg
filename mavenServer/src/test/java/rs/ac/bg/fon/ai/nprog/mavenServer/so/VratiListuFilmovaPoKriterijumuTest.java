@@ -21,7 +21,8 @@ import rs.ac.bg.fon.ai.nprog.mavenServer.configuration.Configuration;
 import rs.ac.bg.fon.ai.nprog.mavenServer.database.DatabaseConnection;
 
 public class VratiListuFilmovaPoKriterijumuTest {
-
+	List<String> columns;
+	List<String> values;
 	private static Connection connection;
 
 	@BeforeClass
@@ -44,6 +45,9 @@ public class VratiListuFilmovaPoKriterijumuTest {
 
 	@Before
 	public void setUp() throws Exception {
+		columns=new ArrayList<>();
+		values=new ArrayList<>();
+		
 		String query = "INSERT INTO user VALUES(1,'ivona','Ivona','Heldrih','ivona123')";
 		Statement statement = connection.createStatement();
 		statement.executeUpdate(query);
@@ -81,6 +85,10 @@ public class VratiListuFilmovaPoKriterijumuTest {
 
 	@After
 	public void tearDown() throws Exception {
+		
+		columns=null;
+		values=null;
+		
 		String query = "Delete from movie";
 		Statement statement = connection.createStatement();
 		statement.executeUpdate(query);
@@ -95,8 +103,7 @@ public class VratiListuFilmovaPoKriterijumuTest {
 
 	@Test
 	public void testVratiListuFilmovaPoKriterijumuUserId() throws Exception {
-		List<String> columns=new ArrayList<>();
-		List<String> values=new ArrayList<>();
+		
 		columns.add("UserId");
 		values.add("1");
 
@@ -112,8 +119,7 @@ public class VratiListuFilmovaPoKriterijumuTest {
 	
 	@Test
 	public void testVratiListuFilmovaPoKriterijumuMovieIdAndUserId() throws Exception {
-		List<String> columns=new ArrayList<>();
-		List<String> values=new ArrayList<>();
+		
 		columns.add("UserId");
 		values.add("1");
 		
@@ -131,8 +137,7 @@ public class VratiListuFilmovaPoKriterijumuTest {
 	
 	@Test
 	public void testVratiListuFilmovaPoKriterijumuGenreYearDirectorUserId() throws Exception {
-		List<String> columns=new ArrayList<>();
-		List<String> values=new ArrayList<>();
+		
 		columns.add("UserId");
 		values.add("3");
 		
@@ -160,8 +165,7 @@ public class VratiListuFilmovaPoKriterijumuTest {
 	
 	@Test
 	public void testVratiListuFilmovaPoKriterijumuSviKriterijumi() throws Exception {
-		List<String> columns=new ArrayList<>();
-		List<String> values=new ArrayList<>();
+		
 		
 		columns.add("MovieId");
 		values.add("3");
@@ -196,8 +200,7 @@ public class VratiListuFilmovaPoKriterijumuTest {
 	
 	@Test
 	public void testVratiListuFilmovaPoKriterijumuNepostojeci() throws Exception {
-		List<String> columns=new ArrayList<>();
-		List<String> values=new ArrayList<>();
+		
 		columns.add("UserId");
 		values.add("10");
 
