@@ -86,8 +86,10 @@ public class VratiListuSalaTest {
 		halls.add(new Hall(1,"Hall1",100));
 		halls.add(new Hall(2,"Hall2",200));
 		halls.add(new Hall(3,"Hall3",300));
-		halls.add(new Hall(4,"Hall4",280));
-		halls.add(new Hall(5,"Hall5",250));
+		halls.add(new Hall(4,"Hall4",290));
+		halls.add(new Hall(5,"Hall5",280));
+		halls.add(new Hall(6,"Hall6",250));
+
 		
 		vratiListuSala.executeOperation();
 		
