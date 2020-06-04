@@ -89,11 +89,6 @@ public class MovieTest {
 		assertEquals("MovieId", movie.getPrimaryKeyName());
 	}
 
-//	@Test
-//	public void testConvertRSList() {
-//		fail("Not yet implemented");
-//	}
-
 	@Test
 	public void testGetUpdateQuery() {
 		assertEquals(

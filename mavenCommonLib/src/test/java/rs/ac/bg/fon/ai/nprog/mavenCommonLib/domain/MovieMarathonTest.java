@@ -64,11 +64,6 @@ public class MovieMarathonTest {
 		assertEquals("MarathonId", mm.getPrimaryKeyName());
 	}
 
-//	@Test
-//	public void testConvertRSList() {
-//		fail("Not yet implemented");
-//	}
-
 	@Test
 	public void testGetUpdateQuery() {
 		assertEquals("MarathonId=1", mm.getUpdateQuery());

@@ -62,11 +62,6 @@ public class HallTest {
 		assertEquals("HallId=1, Name='Petar pan', Capacity=100", hall.getUpdateQuery());
 	}
 
-//	@Test
-//	public void testConvertRSList() {
-//		fail("Not yet implemented");
-//	}
-
 	@Test
 	public void testToString() {
 		assertTrue(hall.toString().contains("Petar pan"));

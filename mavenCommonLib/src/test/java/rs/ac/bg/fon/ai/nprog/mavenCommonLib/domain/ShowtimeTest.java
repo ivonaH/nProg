@@ -105,13 +105,6 @@ public class ShowtimeTest {
 		assertEquals(movie, showtime.getMovie());
 	}
 
-//	@Test
-//	public void testSetMovieMarathon() {
-//		MovieMarathon mm=new MovieMarathon();
-//		mm.setMarathonId(1111);
-//		assertEquals(mm, showtime.getMovieMarathon());
-//	}
-
 	@Test
 	public void testGetParameters() {
 		assertEquals("1, '2020-05-15','15:00:00',55,111,1", showtime.getParameters());
