@@ -7,6 +7,9 @@ package rs.ac.bg.fon.ai.nprog.mavenServer.so;
 
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.DomainObject;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Showtime;
+import rs.ac.bg.fon.ai.nprog.mavenCommonLib.exception.ValidationException;
+import rs.ac.bg.fon.ai.nprog.mavenServer.validator.showtime.SaveShowtimeValidator;
+import rs.ac.bg.fon.ai.nprog.mavenServer.validator.showtime.UpdateShowtimeValidator;
 
 import java.util.List;
 
@@ -29,11 +32,14 @@ public class IzmeniProjekciju extends AbstractSystemOperation {
 	 * Parametrizovani konstruktor metode izmeni projekciju.
 	 * 
 	 * @param object koji zelimo da izmenimo
-	 * @throws Exception ako primljeni objekat nije instanca klase Showtime
+	 * @throws Exception ako primljeni objekat nije instanca klase Showtime, ili
+	 * ako je sala zauzeta u tom terminu, ili ako je nova sala premalog kapaciteta 
+	 * (postoji vise rezervacija nego sto je kapacitet nove sale).
 	 */
 	public IzmeniProjekciju(Object object) throws Exception {
 		validate(object);
 		this.showtime = (Showtime) object;
+		validateShowtimeDetails();
 	}
 
 	/**
@@ -59,4 +65,22 @@ public class IzmeniProjekciju extends AbstractSystemOperation {
 			throw new Exception("Objekat nije instanca klase Projekcija!");
 		}
 	}
+	
+	/**
+	 * 
+	 * @throws ValidationException <ul> Ukoliko 
+	 * <li>Ako je sala zauzeta u tom terminu </li>
+	 * <li>Ukoliko ima vise rezervacija nego sto je kapacitet sale koju pokusava da postavi </li>
+	 * </li> dolazi do izuzetka.
+	 */
+    protected void validateShowtimeDetails() throws ValidationException {
+        try {
+            SaveShowtimeValidator.validateShowtime(showtime);
+            UpdateShowtimeValidator.checkNewHallCapacity(showtime);
+
+        } catch (Exception ex) {
+            throw new ValidationException(ex.getMessage());
+        }
+      
+    }
 }
