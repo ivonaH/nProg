@@ -5,7 +5,7 @@
  */
 package rs.ac.bg.fon.ai.nprog.mavenServer.so;
 
-import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.*;
+import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Reservation;
 import java.util.List;
 
 /**
@@ -30,7 +30,7 @@ public class VratiListuRezervacija extends AbstractSystemOperation {
 	 */
     @Override
     protected void executeSpecificOperation() throws Exception {
-        reservations = (List< Reservation>) (Object) dbb.getAllDomainObjectsWithJoin(new Reservation());
+        reservations = (List< Reservation>) (Object) dbb.getAllDomainObjects(new Reservation());
     }
 
     

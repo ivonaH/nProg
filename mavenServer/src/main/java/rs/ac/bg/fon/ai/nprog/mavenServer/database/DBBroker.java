@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class DBBroker {
 
-    public List<DomainObject> getAllDomainObjects(domain.DomainObject o) throws Exception {
+    public List<DomainObject> getAllDomainObjects(DomainObject o) throws Exception {
         String query = "SELECT * FROM " + o.getTableName()+" t ";
         if (o.getSortCondition() != null) {
             query += " ORDER BY " + o.getSortCondition();
@@ -34,7 +34,7 @@ public class DBBroker {
         return list;
     }
 
-    public List<DomainObject> getAllDomainObjectsWithWhere(domain.DomainObject o, List<String> columns, List<String> values) throws Exception {
+    public List<DomainObject> getAllDomainObjectsWithWhere(DomainObject o, List<String> columns, List<String> values) throws Exception {
         String query = "SELECT * FROM " + o.getTableName();
         if (o.getJoinCondition() != null) {
             query += " t " + o.getJoinCondition();
@@ -63,7 +63,7 @@ public class DBBroker {
 
     }
 
-    public int countDomainObjectsWithWhere(domain.DomainObject o, String column, int value) throws Exception {
+    public int countDomainObjectsWithWhere(DomainObject o, String column, int value) throws Exception {
         int number = -1;
 
         String query = "SELECT COUNT(*) as number FROM " + o.getTableName();
