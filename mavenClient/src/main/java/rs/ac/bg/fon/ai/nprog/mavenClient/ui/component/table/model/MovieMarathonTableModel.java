@@ -53,4 +53,10 @@ public class MovieMarathonTableModel extends AbstractTableModel {
     public MovieMarathon getSelectedMarathon(int row) {
         return movieMarathons.get(row);
     }
+
+    @Override
+    public boolean isCellEditable(int i, int i1) {
+        return false;
+    }
+
 }

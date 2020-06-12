@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  * @author Ivona
  */
 public class ReservationTableModel extends AbstractTableModel{
-String[] columns={"Id","Ime i prezime","Email","Film","Vreme i datum","Sala"};
+String[] columns={"Ime i prezime","Email","Film","Vreme i datum","Sala"};//"Id",
 List<Reservation> reservations;
 
     public ReservationTableModel(List<Reservation> r) {
@@ -35,12 +35,12 @@ List<Reservation> reservations;
     public Object getValueAt(int row, int column) {
         Reservation reservation=reservations.get(row);
         switch(column){
-            case 0: return reservation.getReservationId();
-            case 1: return reservation.getNameLastname();
-            case 2: return reservation.getEmail();
-            case 3: return reservation.getShowtime().getMovie();
-            case 4: return reservation.getShowtime().getDate()+" "+reservation.getShowtime().getTime();
-            case 5: return reservation.getShowtime().getHall().getName();
+//            case 0: return reservation.getReservationId();
+            case 0: return reservation.getNameLastname();
+            case 1: return reservation.getEmail();
+            case 2: return reservation.getShowtime().getMovie();
+            case 3: return reservation.getShowtime().getDate()+" "+reservation.getShowtime().getTime();
+            case 4: return reservation.getShowtime().getHall().getName();
             default: return "n/a";
         }
     }

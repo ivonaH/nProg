@@ -17,7 +17,7 @@ import javax.swing.table.AbstractTableModel;
 public class ShowtimeTableModel extends AbstractTableModel {
 
     List<Showtime> showtimes;
-    String[] columnNames = {"Movie", "Date", "Time", "Hall name"};
+    String[] columnNames = {"Film", "Datum", "Vreme", "Naziv sale"};
 
     public ShowtimeTableModel(List<Showtime> s) {
         showtimes = s;

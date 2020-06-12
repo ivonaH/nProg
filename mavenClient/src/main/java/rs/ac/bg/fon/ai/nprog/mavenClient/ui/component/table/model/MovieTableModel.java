@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  * @author Ivona
  */
 public class MovieTableModel extends AbstractTableModel{
-    String[] columns={"Id","Ime","Žanr","Producent","Godina"};
+    String[] columns={"Ime","Žanr","Producent","Godina"};//"Id",
     List<Movie> movies;
 
     public MovieTableModel(List<Movie> movies) {
@@ -36,11 +36,11 @@ public class MovieTableModel extends AbstractTableModel{
     public Object getValueAt(int row, int column) {
         Movie movie=movies.get(row);
         switch(column){
-            case 0: return movie.getMovieId();
-            case 1: return movie.getName();
-            case 2: return movie.getGenre();
-            case 3: return movie.getDirector();
-            case 4: return movie.getYear();
+//            case 0: return movie.getMovieId();
+            case 0: return movie.getName();
+            case 1: return movie.getGenre();
+            case 2: return movie.getDirector();
+            case 3: return movie.getYear();
             default: return "n/a";
         }
     }
