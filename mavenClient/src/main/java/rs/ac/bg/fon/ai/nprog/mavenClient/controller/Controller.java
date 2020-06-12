@@ -40,7 +40,6 @@ import rs.ac.bg.fon.ai.nprog.mavenClient.validation.LoginValidator;
 public class Controller {
 
     private static Controller instance;
-
     private User currentUser;
     private FMain fMain;
     private FShowtime fShowtime;
@@ -136,7 +135,7 @@ public class Controller {
         communicationWithServer.sendClientRequest(requestObject);
     }
 
-    public void getShowtimesWithCriteria(ArrayList<String> columns, ArrayList<String> values, JDialog dialog) throws Exception {
+    public void getShowtimesWithCriteria(ArrayList<String> columns, ArrayList<String> values, JDialog dialog) throws Exception {//
         this.dialog = dialog;
         RequestObject requestObject = new RequestObject();
         requestObject.setOperation(Operation.OPERATION_VRATI_PROJEKCIJE_PO_KRITERIJUMU);
@@ -183,15 +182,24 @@ public class Controller {
             communicationWithServer.sendClientRequest(requestObject);
         } catch (ValidationException validationException) {
             fReservation.invalidEmail();
+            System.out.println(validationException.getMessage());
+
         }
     }
 
     public void saveShowtime(Showtime showtime, FShowtime fShowtime) throws Exception {
         this.fShowtime = fShowtime;
-        RequestObject requestObject = new RequestObject();
-        requestObject.setOperation(Operation.OPERATION_KREIRAJ_PROJEKCIJU);
-        requestObject.setData(showtime);
-        communicationWithServer.sendClientRequest(requestObject);
+        try {
+            ShowtimeValidation.validateShowtimeDate(showtime);
+            RequestObject requestObject = new RequestObject();
+            requestObject.setOperation(Operation.OPERATION_KREIRAJ_PROJEKCIJU);
+            requestObject.setData(showtime);
+            communicationWithServer.sendClientRequest(requestObject);
+        } catch (ValidationException validationException) {
+            fShowtime.invalidDateAndTime();
+            System.out.println(validationException.getMessage());
+        }
+
     }
 
     public void removeShowtime(Showtime showtime, FShowtimeSearch fShowtimeSearch) throws Exception {
@@ -213,6 +221,7 @@ public class Controller {
         RequestObject requestObject = new RequestObject();
         requestObject.setOperation(Operation.OPERATION_IZMENI_PROJEKCIJU);
         showtime.setHall(hall);
+        System.out.println("POSTAVALJENA SALA: " + showtime.getHall().getName());
         requestObject.setData(showtime);
         communicationWithServer.sendClientRequest(requestObject);
 
@@ -220,13 +229,19 @@ public class Controller {
 
     public void saveMovieMarathon(MovieMarathon movieMarathon, List<Showtime> showtimes, FMovieMarathon fMovieMarathon) throws Exception {
         this.fMovieMarathon = fMovieMarathon;
-        RequestObject requestObject = new RequestObject();
-        requestObject.setOperation(Operation.OPERATION_KREIRAJ_MARATON);
-        ArrayList<Object> objectsToAdd = new ArrayList<>();
-        objectsToAdd.add(movieMarathon);
-        objectsToAdd.add(showtimes);
-        requestObject.setData(objectsToAdd);
-        communicationWithServer.sendClientRequest(requestObject);
+        try {
+            SaveMovieMarathonValidator.validateShowtimes(showtimes);
+            RequestObject requestObject = new RequestObject();
+            requestObject.setOperation(Operation.OPERATION_KREIRAJ_MARATON);
+            ArrayList<Object> objectsToAdd = new ArrayList<>();
+            objectsToAdd.add(movieMarathon);
+            objectsToAdd.add(showtimes);
+            requestObject.setData(objectsToAdd);
+            communicationWithServer.sendClientRequest(requestObject);
+        } catch (ValidationException ve) {
+            fMovieMarathon.mmNotCreated();
+            System.out.println(ve.getMessage());
+        }
 
     }
 
@@ -370,6 +385,58 @@ public class Controller {
 
     public void serverIsNotActive() {
         JOptionPane.showMessageDialog(null, "Server is not active.");
+    }
+
+    public void getMovieWithId(int movieId, FMovie fMovie) {
+        this.fMovie = fMovie;
+        RequestObject requestObject = new RequestObject();
+        requestObject.setData(movieId);
+        requestObject.setOperation(Operation.OPERATION_VRATI_FILM_SA_ID);
+        communicationWithServer.sendClientRequest(requestObject);
+    }
+
+    public void getReservationWithId(int reservationId, FReservation fReservation) {
+        this.fReservation = fReservation;
+        RequestObject requestObject = new RequestObject();
+        requestObject.setData(reservationId);
+        requestObject.setOperation(Operation.OPERATION_VRATI_REZERVACIJU_SA_ID);
+        communicationWithServer.sendClientRequest(requestObject);
+    }
+
+    public void getShowtimeWithId(int showtimeId, FShowtime fShowtime) {
+        this.fShowtime = fShowtime;
+        RequestObject requestObject = new RequestObject();
+        requestObject.setData(showtimeId);
+        requestObject.setOperation(Operation.OPERATION_VRATI_PROJEKCIJU_SA_ID);
+        communicationWithServer.sendClientRequest(requestObject);
+    }
+
+    public void movieLoaded(Movie movie) {
+        fMovie.movieLoaded(movie);
+    }
+
+    public void movieNotLoaded() {
+        fMovie.movieNotLoaded();
+    }
+
+    public void showtimeLoaded(Showtime showtime) {
+        try {
+            fShowtime.showtimeLoaded(showtime);
+        } catch (Exception ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void showtimeNotLoaded() {
+        fShowtime.showtimeNotLoaded();
+    }
+
+    public void reservationLoaded(Reservation reservation) {
+        fReservation.reservationLoaded(reservation);
+    }
+
+    public void reservationNotLoaded() {
+        fReservation.reservationNotLoaded();
     }
 
 }

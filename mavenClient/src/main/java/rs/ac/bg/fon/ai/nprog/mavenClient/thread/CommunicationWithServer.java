@@ -49,6 +49,7 @@ public class CommunicationWithServer extends Thread {
                         Controller.getInstance().loginSuccess((User) responseObject.getData());
                     } else {
                         Controller.getInstance().loginFailed();
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -61,6 +62,7 @@ public class CommunicationWithServer extends Thread {
                         }
                     } else {
                         Controller.getInstance().hallLoadingFailed();
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -73,6 +75,7 @@ public class CommunicationWithServer extends Thread {
                         }
                     } else {
                         Controller.getInstance().movieLoadingFailed();
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -85,6 +88,7 @@ public class CommunicationWithServer extends Thread {
                         }
                     } else {
                         Controller.getInstance().reservationLoadingFailed();
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -97,6 +101,7 @@ public class CommunicationWithServer extends Thread {
                         }
                     } else {
                         Controller.getInstance().reservationLoadingFailed();
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -109,6 +114,7 @@ public class CommunicationWithServer extends Thread {
                         }
                     } else {
                         Controller.getInstance().movieMarathonLoadingFailed();
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -121,6 +127,7 @@ public class CommunicationWithServer extends Thread {
                         }
                     } else {
                         Controller.getInstance().movieMarathonLoadingFailed();
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -133,6 +140,7 @@ public class CommunicationWithServer extends Thread {
                         }
                     } else {
                         Controller.getInstance().movieLoadingFailed();
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -145,6 +153,7 @@ public class CommunicationWithServer extends Thread {
                         }
                     } else {
                         Controller.getInstance().showtimeLoadingFailed();
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -154,7 +163,8 @@ public class CommunicationWithServer extends Thread {
                         System.out.println("Sacuvan je...");
                     } else {
                         Controller.getInstance().movieIsNotSaved();
-                        System.out.println("Nije sacuvan...");
+                        System.out.println("Nije sacuvan film...");
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -164,7 +174,8 @@ public class CommunicationWithServer extends Thread {
                         System.out.println("Sacuvan je...");
                     } else {
                         Controller.getInstance().reservationIsNotSaved();
-                        System.out.println("Nije sacuvan...");
+                        System.out.println("Nije sacuvana rezervacija...");
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -174,7 +185,8 @@ public class CommunicationWithServer extends Thread {
                         System.out.println("Sacuvan je...");
                     } else {
                         Controller.getInstance().showtimeIsNotSaved();
-                        System.out.println("Nije sacuvan...");
+                        System.out.println("Nije sacuvana projekcija...");
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -184,7 +196,8 @@ public class CommunicationWithServer extends Thread {
                         System.out.println("Sacuvan je...");
                     } else {
                         Controller.getInstance().movieMarathtonIsNotSaved();
-                        System.out.println("Nije sacuvan...");
+                        System.out.println("Nije sacuvan maraton...");
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -194,7 +207,8 @@ public class CommunicationWithServer extends Thread {
                         System.out.println("Obrisan je maraton...");
                     } else {
                         Controller.getInstance().showtimeNotDeleted();
-                        System.out.println("Nije obrisan maraton....");
+                        System.out.println("Nije obrisana projekcija....");
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -205,6 +219,7 @@ public class CommunicationWithServer extends Thread {
                     } else {
                         Controller.getInstance().reservationNotDeleted();
                         System.out.println("Nije obrisana rezervacija...");
+                        System.out.println(responseObject.getErrorMessage());
                     }
                 }
                 break;
@@ -215,6 +230,42 @@ public class CommunicationWithServer extends Thread {
                     } else {
                         Controller.getInstance().showtimeNotUpdated();
                         System.out.println("Projekcija nije izmenjena");
+                        System.out.println(responseObject.getErrorMessage());
+                    }
+                }
+                break;
+                case Operation.OPERATION_VRATI_FILM_SA_ID: {
+                    if (responseObject.getStatus() == ResponseStatus.SUCCESS) {
+                        Controller.getInstance().movieLoaded((Movie) responseObject.getData());
+                        System.out.println("Ucitan film..." + (Movie) responseObject.getData());
+                    } else {
+                        Controller.getInstance().movieNotLoaded();
+                        System.out.println("Film nije ucitan...");
+                        System.out.println(responseObject.getErrorMessage());
+                    }
+                }
+                break;
+                case Operation.OPERATION_VRATI_PROJEKCIJU_SA_ID: {
+                    if (responseObject.getStatus() == ResponseStatus.SUCCESS) {
+                        Controller.getInstance().showtimeLoaded((Showtime) responseObject.getData());
+                        System.out.println("Ucitana projekcija..." + (Showtime) responseObject.getData());
+                    } else {
+                        Controller.getInstance().showtimeNotLoaded();
+                        System.out.println("Projekcija nije ucitana...");
+                        System.out.println(responseObject.getErrorMessage());
+
+                    }
+                }
+                break;
+                case Operation.OPERATION_VRATI_REZERVACIJU_SA_ID: {
+                    if (responseObject.getStatus() == ResponseStatus.SUCCESS) {
+                        Controller.getInstance().reservationLoaded((Reservation) responseObject.getData());
+                        System.out.println("Ucitana rezervacija.." + (Reservation) responseObject.getData());
+                    } else {
+                        Controller.getInstance().reservationNotLoaded();
+                        System.out.println("Rezervacija nije ucitana...");
+                        System.out.println(responseObject.getErrorMessage());
+
                     }
                 }
                 break;
