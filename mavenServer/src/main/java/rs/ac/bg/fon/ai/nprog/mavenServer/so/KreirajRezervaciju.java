@@ -5,6 +5,8 @@
  */
 package rs.ac.bg.fon.ai.nprog.mavenServer.so;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.*;
+import rs.ac.bg.fon.ai.nprog.mavenCommonLib.exception.ValidationException;
+import rs.ac.bg.fon.ai.nprog.mavenServer.validator.showtime.SaveReservationValidator;
 
 import java.util.List;
 
@@ -27,11 +29,14 @@ public class KreirajRezervaciju extends AbstractSystemOperation {
 	 * Parametrizovani konstruktor metode kreiraj rezervaciju.
 	 * 
 	 * @param object koji zelimo da sacuvamo
-	 * @throws Exception ako primljeni objekat nije instanca klase Reservation
+	 * @throws Exception ako primljeni objekat nije instanca klase Reservation ili ako 
+	 * nema dovoljno mesta na projekciji koju zelimo da rezervisemo.
 	 */
 	public KreirajRezervaciju(Object object) throws Exception {
 		validate(object);
 		this.reservation = (Reservation) object;
+        validateReservationDetails();
+
 	}
 	
 	/**
@@ -60,4 +65,16 @@ public class KreirajRezervaciju extends AbstractSystemOperation {
             throw new Exception("Objekat nije instanca klase Rezervacija!");
         }
     }
+    /**
+     * Metoda koja proverava da li ima slobodnih mesta u sali za projekciju koju zelimo da sacuvamo.
+     * @throws Exception ako nema mesta dolazi do izuzetka.
+     */
+    private void validateReservationDetails() throws Exception {
+        try {
+            SaveReservationValidator.checkCapacity(reservation);
+        } catch (ValidationException ex) {
+            throw new ValidationException("Hall capcity is full for that showtime.");
+        }
+}
+    
 }
