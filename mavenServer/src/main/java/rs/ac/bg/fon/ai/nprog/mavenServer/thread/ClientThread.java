@@ -38,6 +38,7 @@ public class ClientThread extends Thread {
         objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
     }
 
+
     @Override
     public void run() {
         try {
@@ -46,7 +47,6 @@ public class ClientThread extends Thread {
                 RequestObject requestObject = (RequestObject) objectInputStream.readObject();
                 ResponseObject responseObject = handleRequest(requestObject);
                 responseObject.setOperation(requestObject.getOperation());
-                History.getInstance().saveToHistory(loginUser, requestObject, responseObject, new Date());
                 sendResponse(responseObject);
 
             }
@@ -67,69 +67,80 @@ public class ClientThread extends Thread {
     private ResponseObject handleRequest(RequestObject requestObject) {
         int operation = requestObject.getOperation();
         switch (operation) {
-            case Operation.OPERATION_NADJI_RADNIKA: {
-                System.out.println("PRIMIO ZAHTEV ZA NADJI RADNIKA");
+            case util.Operation.OPERATION_NADJI_RADNIKA: {
+                System.out.println("primio zahtev za nadji");
                 User user = (User) requestObject.getData();
                 ResponseObject ro = login(user, operation);
 
                 return ro;
             }
-            case Operation.OPERATION_VRATI_SALE: {
+            case util.Operation.OPERATION_VRATI_SALE: {
                 return getAllHalls(operation);
             }
-            case Operation.OPERATION_VRATI_FILMOVE: {
+            case util.Operation.OPERATION_VRATI_FILMOVE: {
                 System.out.println("PRIMIO ZAHTEV ZA PRIKAZ FILMOVA");
                 return getAllMovies(operation);
             }
-            case Operation.OPERATION_VRATI_FILMSKE_MARATONE: {
+            case util.Operation.OPERATION_VRATI_FILMSKE_MARATONE: {
                 System.out.println("PRIMIO ZAHTEV ZA PRIKAZ MARATONA");
                 return getAllMovieMarathons(operation);
             }
-            case Operation.OPERATION_VRATI_REZERVACIJE: {
+            case util.Operation.OPERATION_VRATI_REZERVACIJE: {
                 System.out.println("PRIMIO ZAHTEV ZA PRIKAZ REZERVACIJA");
                 return getAllReservations(operation);
             }
-            case Operation.OPERATION_VRATI_FILMOVE_PO_KRITERIJUMU: {
+            case util.Operation.OPERATION_VRATI_FILMOVE_PO_KRITERIJUMU: {
                 System.out.println("PRIMIO ZAHTEV ZA PRIKAZ FILMOVA PO KRITERIJUMU");
                 return getMoviesWithCriteria(requestObject.getColumns(), requestObject.getValues(), operation);
             }
-            case Operation.OPERATION_VRATI_PROJEKCIJE_PO_KRITERIJUMU: {
+            case util.Operation.OPERATION_VRATI_PROJEKCIJE_PO_KRITERIJUMU: {
                 System.out.println("PRIMIO ZAHTEV ZA PRIKAZ SHOWTIME PO KRITERIJUMU");
                 return getShowtimesWithCriteria(requestObject.getColumns(), requestObject.getValues(), operation);
             }
-            case Operation.OPERATION_VRATI_FILMSKE_MARATONE_PO_KRITERIJUMU: {
+            case util.Operation.OPERATION_VRATI_FILMSKE_MARATONE_PO_KRITERIJUMU: {
                 System.out.println("PRIMIO ZAHTEV ZA PRIKAZ maratona PO KRITERIJUMU");
                 return getMarathonsWithCriteria(requestObject.getColumns(), requestObject.getValues(), operation);
             }
-            case Operation.OPERATION_VRATI_REZERVACIJE_PO_KRITERIJUMU: {
-                System.out.println("PRIMIO ZAHTEV ZA PRIKAZ maratona PO KRITERIJUMU");
+            case util.Operation.OPERATION_VRATI_REZERVACIJE_PO_KRITERIJUMU: {
+                System.out.println("PRIMIO ZAHTEV ZA PRIKAZ rezervacija PO KRITERIJUMU");
                 return getReservationsWithCriteria(requestObject.getColumns(), requestObject.getValues(), operation);
             }
-            case Operation.OPERATION_KREIRAJ_FILM: {
+            case util.Operation.OPERATION_KREIRAJ_FILM: {
                 System.out.println("PRIMIO ZAHTEV ZA cuvanje filma");
                 return saveMovie(requestObject.getData(), operation);
             }
-            case Operation.OPERATION_KREIRAJ_REZERVACIJU: {
+            case util.Operation.OPERATION_VRATI_FILM_SA_ID: {
+                return getMovieWithId(requestObject.getData(), operation);
+            }
+            case util.Operation.OPERATION_VRATI_REZERVACIJU_SA_ID: {
+                System.out.println("PRIMIO ZAHTEV da nadje rezerv sa idijem");
+                return getReservationWithId(requestObject.getData(), operation);
+            }
+               case util.Operation.OPERATION_VRATI_PROJEKCIJU_SA_ID: {
+                System.out.println("PRIMIO ZAHTEV da nadje projek sa idijem");
+                return getShowtimeWithId(requestObject.getData(), operation);
+            }
+            case util.Operation.OPERATION_KREIRAJ_REZERVACIJU: {
                 System.out.println("PRIMIO ZAHTEV ZA cuvanje rezervacije");
                 return saveReservation(requestObject.getData(), operation);
             }
-            case Operation.OPERATION_OBRISI_REZERVACIJU: {
+            case util.Operation.OPERATION_OBRISI_REZERVACIJU: {
                 System.out.println("PRIMIO ZAHTEV ZA brisanje rezervacije");
                 return removeReservation(requestObject.getData(), operation);
             }
-            case Operation.OPERATION_KREIRAJ_PROJEKCIJU: {
+            case util.Operation.OPERATION_KREIRAJ_PROJEKCIJU: {
                 System.out.println("PRIMIO ZAHTEV ZA cuvanje projekcije");
                 return saveShowtime(requestObject.getData(), operation);
             }
-            case Operation.OPERATION_OBRISI_PROJEKCIJU: {
+            case util.Operation.OPERATION_OBRISI_PROJEKCIJU: {
                 System.out.println("PRIMIO ZAHTEV ZA brisanje projekcije");
                 return removeShowtime(requestObject.getData(), operation);
             }
-            case Operation.OPERATION_IZMENI_PROJEKCIJU: {
+            case util.Operation.OPERATION_IZMENI_PROJEKCIJU: {
                 System.out.println("PRIMIO ZAHTEV ZA izmenu projekcije");
                 return updateShowtime(requestObject.getData(), operation);
             }
-            case Operation.OPERATION_KREIRAJ_MARATON: {
+            case util.Operation.OPERATION_KREIRAJ_MARATON: {
                 System.out.println("PRIMIO ZAHTEV ZA kreiranje mm ");
                 return saveMovieMarathon(requestObject.getData(), operation);
             }
@@ -142,23 +153,33 @@ public class ClientThread extends Thread {
         responseObject.setOperation(operation);
         User user;
         try {
-            user = Controller.getInstance().login(checkUser);
+            System.out.println("USAO U CLIENT THREAD");
+            user = controller.Controller.getInstance().login(checkUser);
             if (user != null) {
-              
-                    if (!Controller.getInstance().getOnlineUsers().contains(user)) {
-                        System.out.println(Controller.getInstance().getOnlineUsers());
-                        loginUser = user;
-                        responseObject.setStatus(ResponseStatus.SUCCESS);
-                        responseObject.setData(user);
-                    } else {
-                        responseObject.setStatus(ResponseStatus.ERROR);
-                        responseObject.setErrorMessage("Korisnik sa tim podacima je vec ulogovan.");
-                    }
+                System.out.println("USER JE" + user.getName());
+                System.out.println("NIJE NULL");
+                System.out.println("PROCITAO USERA:  ....." + user.getName());
+
+                if (!Controller.getInstance().getOnlineUsers().contains(user)) {
+                    System.out.println(Controller.getInstance().getOnlineUsers());
+                    loginUser = user;
+//                        Controller.getInstance().addOnlineUser(user);
+                    System.out.println("POSTAVLJAM LOGIN USERA");
+                    responseObject.setStatus(ResponseStatus.SUCCESS);
+                    responseObject.setData(user);
+                } else {
+                    responseObject.setStatus(ResponseStatus.ERROR);
+                    responseObject.setErrorMessage("Korisnik sa tim podacima je vec ulogovan.");
+                    System.out.println("VEC JE ULOGOVAN TAJ USER");
+                }
 
             }
         } catch (Exception ex) {
+            System.out.println("JESTE NULL");
             responseObject.setStatus(ResponseStatus.ERROR);
             responseObject.setErrorMessage(ex.getMessage());
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -169,14 +190,18 @@ public class ClientThread extends Thread {
 
         List<Hall> halls;
         try {
-            halls = Controller.getInstance().getAllHalls();
+            halls = controller.Controller.getInstance().getAllHalls();
             if (halls != null) {
+                System.out.println("USPESNO");
                 responseObject.setData(halls);
                 responseObject.setStatus(ResponseStatus.SUCCESS);
             }
         } catch (Exception ex) {
+            System.out.println("JESTE NULL");
             responseObject.setStatus(ResponseStatus.ERROR);
             responseObject.setErrorMessage(ex.getMessage());
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -186,14 +211,18 @@ public class ClientThread extends Thread {
         responseObject.setOperation(operation);
         List<Movie> movies;
         try {
-            movies = Controller.getInstance().getAllMovies();
+            movies = controller.Controller.getInstance().getAllMovies();
             if (movies != null) {
+                System.out.println("USPESNO MOVIE");
                 responseObject.setData(movies);
                 responseObject.setStatus(ResponseStatus.SUCCESS);
             }
         } catch (Exception ex) {
+            System.out.println("JESTE NULL MOVIE");
             responseObject.setStatus(ResponseStatus.ERROR);
             responseObject.setErrorMessage(ex.getMessage());
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -203,14 +232,18 @@ public class ClientThread extends Thread {
         responseObject.setOperation(operation);
         List<MovieMarathon> movieMarathons;
         try {
-            movieMarathons = Controller.getInstance().getAllMovieMarathons();
+            movieMarathons = controller.Controller.getInstance().getAllMovieMarathons();
             if (movieMarathons != null) {
+                System.out.println("USPESNO MOVIE");
                 responseObject.setData(movieMarathons);
                 responseObject.setStatus(ResponseStatus.SUCCESS);
             }
         } catch (Exception ex) {
+            System.out.println("JESTE NULL MOVIE MARATHON");
             responseObject.setStatus(ResponseStatus.ERROR);
             responseObject.setErrorMessage(ex.getMessage());
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -220,14 +253,18 @@ public class ClientThread extends Thread {
         responseObject.setOperation(operation);
         List<Reservation> reservations;
         try {
-            reservations = Controller.getInstance().getAllReservations();
+            reservations = controller.Controller.getInstance().getAllReservations();
             if (reservations != null) {
+                System.out.println("USPESNO RES");
                 responseObject.setData(reservations);
                 responseObject.setStatus(ResponseStatus.SUCCESS);
             }
         } catch (Exception ex) {
+            System.out.println("JESTE NULL RES");
             responseObject.setStatus(ResponseStatus.ERROR);
             responseObject.setErrorMessage(ex.getMessage());
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -237,14 +274,17 @@ public class ClientThread extends Thread {
         responseObject.setOperation(operation);
         List<Movie> movies;
         try {
-            movies = Controller.getInstance().getMoviesWithCriteria(columns, values);
+            movies = controller.Controller.getInstance().getMoviesWithCriteria(columns, values);
             if (movies != null) {
                 responseObject.setData(movies);
                 responseObject.setStatus(ResponseStatus.SUCCESS);
             }
         } catch (Exception ex) {
+            System.out.println("JESTE NULL MOVIE WITH WHERE");
             responseObject.setStatus(ResponseStatus.ERROR);
             responseObject.setErrorMessage(ex.getMessage());
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -254,14 +294,17 @@ public class ClientThread extends Thread {
         responseObject.setOperation(operation);
         List<Showtime> showtimes;
         try {
-            showtimes =Controller.getInstance().getShowtimesWithCriteria(columns, values);
+            showtimes = controller.Controller.getInstance().getShowtimesWithCriteria(columns, values);
             if (showtimes != null) {
                 responseObject.setData(showtimes);
                 responseObject.setStatus(ResponseStatus.SUCCESS);
             }
         } catch (Exception ex) {
+            System.out.println("JESTE NULL showtime WITH WHERE");
             responseObject.setStatus(ResponseStatus.ERROR);
             responseObject.setErrorMessage(ex.getMessage());
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -271,7 +314,7 @@ public class ClientThread extends Thread {
         responseObject.setOperation(operation);
         List<MovieMarathon> marathons;
         try {
-            marathons = Controller.getInstance().getMovieMarathonWithCriteria(columns, values);
+            marathons = controller.Controller.getInstance().getMovieMarathonWithCriteria(columns, values);
             if (marathons != null) {
                 responseObject.setData(marathons);
                 responseObject.setStatus(ResponseStatus.SUCCESS);
@@ -279,6 +322,8 @@ public class ClientThread extends Thread {
         } catch (Exception ex) {
             responseObject.setStatus(ResponseStatus.ERROR);
             responseObject.setErrorMessage(ex.getMessage());
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -288,7 +333,7 @@ public class ClientThread extends Thread {
         responseObject.setOperation(operation);
         List<Reservation> reservations;
         try {
-            reservations = Controller.getInstance().getReservationsWithCriteria(columns, values);
+            reservations = controller.Controller.getInstance().getReservationsWithCriteria(columns, values);
             if (reservations != null) {
                 responseObject.setData(reservations);
                 responseObject.setStatus(ResponseStatus.SUCCESS);
@@ -296,6 +341,8 @@ public class ClientThread extends Thread {
         } catch (Exception ex) {
             responseObject.setStatus(ResponseStatus.ERROR);
             responseObject.setErrorMessage(ex.getMessage());
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -304,11 +351,13 @@ public class ClientThread extends Thread {
         ResponseObject responseObject = new ResponseObject();
         responseObject.setOperation(operation);
         try {
-            Controller.getInstance().saveMovie(data);
+            controller.Controller.getInstance().saveMovie(data);
             responseObject.setStatus(ResponseStatus.SUCCESS);
         } catch (Exception ex) {
             responseObject.setErrorMessage(ex.getMessage());
             responseObject.setStatus(ResponseStatus.ERROR);
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -317,11 +366,13 @@ public class ClientThread extends Thread {
         ResponseObject responseObject = new ResponseObject();
         responseObject.setOperation(operation);
         try {
-            Controller.getInstance().saveMovieMarathon(data);
+            controller.Controller.getInstance().saveMovieMarathon(data);
             responseObject.setStatus(ResponseStatus.SUCCESS);
         } catch (Exception ex) {
             responseObject.setErrorMessage(ex.getMessage());
             responseObject.setStatus(ResponseStatus.ERROR);
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -330,11 +381,13 @@ public class ClientThread extends Thread {
         ResponseObject responseObject = new ResponseObject();
         responseObject.setOperation(operation);
         try {
-            Controller.getInstance().saveReservation(data);
+            controller.Controller.getInstance().saveReservation(data);
             responseObject.setStatus(ResponseStatus.SUCCESS);
         } catch (Exception ex) {
             responseObject.setErrorMessage(ex.getMessage());
             responseObject.setStatus(ResponseStatus.ERROR);
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -343,11 +396,13 @@ public class ClientThread extends Thread {
         ResponseObject responseObject = new ResponseObject();
         responseObject.setOperation(operation);
         try {
-            Controller.getInstance().removeReservation(data);
+            controller.Controller.getInstance().removeReservation(data);
             responseObject.setStatus(ResponseStatus.SUCCESS);
         } catch (Exception ex) {
             responseObject.setErrorMessage(ex.getMessage());
             responseObject.setStatus(ResponseStatus.ERROR);
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -356,11 +411,13 @@ public class ClientThread extends Thread {
         ResponseObject responseObject = new ResponseObject();
         responseObject.setOperation(operation);
         try {
-            Controller.getInstance().saveShowtime(data);
+            controller.Controller.getInstance().saveShowtime(data);
             responseObject.setStatus(ResponseStatus.SUCCESS);
         } catch (Exception ex) {
             responseObject.setErrorMessage(ex.getMessage());
             responseObject.setStatus(ResponseStatus.ERROR);
+            System.out.println(ex.getMessage());
+
         }
         return responseObject;
     }
@@ -369,11 +426,14 @@ public class ClientThread extends Thread {
         ResponseObject responseObject = new ResponseObject();
         responseObject.setOperation(operation);
         try {
-            Controller.getInstance().removeShowtime(data);
+            controller.Controller.getInstance().removeShowtime(data);
             responseObject.setStatus(ResponseStatus.SUCCESS);
+            System.out.println("USPESNO BRISANJE");
         } catch (Exception ex) {
             responseObject.setErrorMessage(ex.getMessage());
             responseObject.setStatus(ResponseStatus.ERROR);
+            System.out.println("NEUSPESNO BRISANJE");
+            System.out.println(ex.getMessage());
 
         }
         return responseObject;
@@ -383,11 +443,14 @@ public class ClientThread extends Thread {
         ResponseObject responseObject = new ResponseObject();
         responseObject.setOperation(operation);
         try {
-            Controller.getInstance().updateShowtime(data);
+            controller.Controller.getInstance().updateShowtime(data);
             responseObject.setStatus(ResponseStatus.SUCCESS);
+            System.out.println("USPESNO IZMENJENO");
         } catch (Exception ex) {
             responseObject.setErrorMessage(ex.getMessage());
             responseObject.setStatus(ResponseStatus.ERROR);
+            System.out.println("NEUSPESNO IZMENJENO");
+            System.out.println(ex.getMessage());
 
         }
         return responseObject;
@@ -406,4 +469,64 @@ public class ClientThread extends Thread {
         this.loginUser = loginUser;
     }
 
+    private ResponseObject getMovieWithId(Object data, int operation) {
+        ResponseObject responseObject = new ResponseObject();
+        responseObject.setOperation(operation);
+        Movie movie;
+        try {
+            movie = Controller.getInstance().getMovieWithId((int) data);
+            if (movie != null) {
+                responseObject.setData(movie);
+                responseObject.setStatus(ResponseStatus.SUCCESS);
+            }
+        } catch (Exception ex) {
+            System.out.println("Greska prilikom nalazenja filma");
+            responseObject.setStatus(ResponseStatus.ERROR);
+            responseObject.setErrorMessage(ex.getMessage());
+            System.out.println(ex.getMessage());
+
+        }
+        return responseObject;
+    }
+
+    private ResponseObject getReservationWithId(Object data, int operation) {
+        ResponseObject responseObject = new ResponseObject();
+        responseObject.setOperation(operation);
+        Reservation reservation;
+        try {
+
+            reservation = Controller.getInstance().getReservationWithId((int) data);
+            if (reservation != null) {
+                responseObject.setData(reservation);
+                responseObject.setStatus(ResponseStatus.SUCCESS);
+            }
+        } catch (Exception ex) {
+            System.out.println("Greska prilikom nalazenja rezervacije");
+            responseObject.setStatus(ResponseStatus.ERROR);
+            responseObject.setErrorMessage(ex.getMessage());
+            System.out.println(ex.getMessage());
+
+        }
+        return responseObject;
+    }
+    private ResponseObject getShowtimeWithId(Object data, int operation) {
+        ResponseObject responseObject = new ResponseObject();
+        responseObject.setOperation(operation);
+        Showtime showtime;
+        try {
+
+            showtime = Controller.getInstance().getShowtimeWithId((int) data);
+            if (showtime != null) {
+                responseObject.setData(showtime);
+                responseObject.setStatus(ResponseStatus.SUCCESS);
+            }
+        } catch (Exception ex) {
+            System.out.println("Greska prilikom nalazenja projekcije");
+            responseObject.setStatus(ResponseStatus.ERROR);
+            responseObject.setErrorMessage(ex.getMessage());
+            System.out.println(ex.getMessage());
+
+        }
+        return responseObject;
+    }
 }

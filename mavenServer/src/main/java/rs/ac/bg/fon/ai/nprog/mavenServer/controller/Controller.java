@@ -36,7 +36,6 @@ import javax.swing.JOptionPane;
  */
 public class Controller {
 
-//    private static User currentUser;
 	private final List<ClientThread> clientThreads;
 	private static Controller instance;
 
@@ -129,7 +128,25 @@ public class Controller {
 		return ((VratiListuFilmova) so).getMovies();
 
 	}
+        public Movie getMovieWithId(int id) throws Exception {
+		AbstractSystemOperation so = new VratiFilmSaId(id);
+		so.executeOperation();
+		return ((VratiFilmSaId) so).getMovie();
 
+	}
+            public Showtime getShowtimeWithId(int id) throws Exception {
+		AbstractSystemOperation so = new VratiProjekcijuSaId(id);
+		so.executeOperation();
+		return ((VratiProjekcijuSaId) so).getShowtime();
+
+	}
+   public Reservation getReservationWithId(int id) throws Exception {
+            System.out.println("USAO U KONTROLER get Reservation wiht id");
+		AbstractSystemOperation so = new VratiRezervacijuSaId(id);
+		so.executeOperation();
+		return ((VratiRezervacijuSaId) so).getReservation();
+
+	}
 	public List<Reservation> getAllReservations() throws Exception {
 		AbstractSystemOperation so = new VratiListuRezervacija();
 		so.executeOperation();
@@ -204,18 +221,6 @@ public class Controller {
 		AbstractSystemOperation so = new ObrisiRezervaciju(reservation);
 		so.executeOperation();
 	}
-//
-//    public User getCurrentUser() {
-//        return currentUser;
-//    }
-
-//    public void addOnlineUser(User user) {
-//        onlineUsers.add(user);
-//    }
-//
-//    public void removeUser(User loginUser) {
-//        onlineUsers.remove(loginUser);
-//    }
 
 	public void changePortNumber(int port, FServerConfig fsc) {
 		try {
