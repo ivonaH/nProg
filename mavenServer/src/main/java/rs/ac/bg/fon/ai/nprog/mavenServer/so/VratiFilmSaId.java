@@ -21,9 +21,11 @@ public class VratiFilmSaId extends AbstractSystemOperation {
     * Id filma koji trazimo
     */
    int id;
-
+   /**
+    * Parametrizovani konstruktor klase VratiFilmSaId.
+    * @param id koji zelimo da pronadjemo
+    */
    public VratiFilmSaId(int id) {
-       System.out.println("USAO U KONSTRUKTOR GET MOVIE WITH ID");
        this.id = id;
    }
 
@@ -34,7 +36,6 @@ public class VratiFilmSaId extends AbstractSystemOperation {
     */
    @Override
    protected void executeSpecificOperation() throws Exception {
-       System.out.println("USAO U SO");
        movie = (Movie) (Object) dbb.getDomainObjectByPrimaryKey(new Movie(), id);
 
    }
