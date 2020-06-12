@@ -30,5 +30,8 @@ public interface Operation extends Serializable {
     public static final int OPERATION_IZMENI_PROJEKCIJU = 15;
     public static final int OPERATION_KREIRAJ_MARATON = 16;
     public static final int OPERATION_LOGOUT=17;
+    public static final int OPERATION_VRATI_FILM_SA_ID = 18;
+    public static final int OPERATION_VRATI_REZERVACIJU_SA_ID = 19;
+    public static final int OPERATION_VRATI_PROJEKCIJU_SA_ID = 20;
 
 }
