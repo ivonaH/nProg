@@ -17,10 +17,13 @@ import java.util.List;
  */
 public class DBBroker {
 
-    public List<DomainObject> getAllDomainObjects(DomainObject o) throws Exception {
-        String query = "SELECT * FROM " + o.getTableName();
+    public List<DomainObject> getAllDomainObjects(domain.DomainObject o) throws Exception {
+        String query = "SELECT * FROM " + o.getTableName()+" t ";
         if (o.getSortCondition() != null) {
             query += " ORDER BY " + o.getSortCondition();
+        }
+        if(o.getJoinCondition()!=null){
+            query+=o.getJoinCondition();
         }
         System.out.println(query);
         Statement statement = DatabaseConnection.getInstance().getConnection().createStatement();
@@ -31,18 +34,7 @@ public class DBBroker {
         return list;
     }
 
-    public List<DomainObject> getAllDomainObjectsWithJoin(DomainObject o) throws Exception {
-        String query = "SELECT * FROM " + o.getTableName() + " t " + o.getJoinCondition();
-        System.out.println(query);
-        Statement statement = DatabaseConnection.getInstance().getConnection().createStatement();
-        ResultSet rs = statement.executeQuery(query);
-        List<DomainObject> list = o.convertRSList(rs);
-        statement.close();
-        rs.close();
-        return list;
-    }
-
-    public List<DomainObject> getAllDomainObjectsWithWhere(DomainObject o, List<String> columns, List<String> values) throws Exception {
+    public List<DomainObject> getAllDomainObjectsWithWhere(domain.DomainObject o, List<String> columns, List<String> values) throws Exception {
         String query = "SELECT * FROM " + o.getTableName();
         if (o.getJoinCondition() != null) {
             query += " t " + o.getJoinCondition();
@@ -52,11 +44,14 @@ public class DBBroker {
         while (i != columns.size() - 1) {
 
             query += columns.get(i) + "='" + values.get(i) + "' AND ";
+            System.out.println("PROCITAO : " + query);
+
             i++;
         }
         query += columns.get(i) + "=" + "'" + values.get(i) + "'";
         if (o.getSortCondition() != null) {
             query += " ORDER BY " + o.getSortCondition();
+            System.out.println("SORT cond: "+o.getSortCondition());
         }
         System.out.println(query);
         Statement statement = DatabaseConnection.getInstance().getConnection().createStatement();
@@ -68,7 +63,7 @@ public class DBBroker {
 
     }
 
-    public int countDomainObjectsWithWhere(DomainObject o, String column, int value) throws Exception {
+    public int countDomainObjectsWithWhere(domain.DomainObject o, String column, int value) throws Exception {
         int number = -1;
 
         String query = "SELECT COUNT(*) as number FROM " + o.getTableName();
@@ -84,11 +79,13 @@ public class DBBroker {
 
         statement.close();
         rs.close();
+        System.out.println("ResultSet OK izbrojao je:" + number);
         return number;
 
     }
 
     public DomainObject getDomainObjectByPrimaryKey(DomainObject o, int id) throws Exception {
+        System.out.println("USAO U BAZU");
         String query;
         query = "SELECT * FROM " + o.getTableName() + " t";
         if (o.getJoinCondition() != null) {
@@ -133,6 +130,7 @@ public class DBBroker {
     }
 
     public void updateDomainObjects(List<DomainObject> list, String column, String value) throws Exception {
+
         for (DomainObject o : list) {
             updateDomainObjectValue(o, column, value);
         }
