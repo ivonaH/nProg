@@ -98,6 +98,7 @@ public class DBBroker {
         List<DomainObject> list = o.convertRSList(rs);
         statement.close();
         rs.close();
+        if(list.size()==0) return null;
         return list.get(0);
     }
 
