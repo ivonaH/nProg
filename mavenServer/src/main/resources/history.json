@@ -1,43 +1,22 @@
 [
   {
     "username": "ivona",
-    "date": "May 12, 2020 11:08:07 PM",
+    "date": "Jun 20, 2020, 6:45:39 PM",
     "operation": 1,
     "status": "SUCCESS",
     "errorMessage": ""
   },
   {
     "username": "ivona",
-    "date": "May 12, 2020 11:08:07 PM",
+    "date": "Jun 20, 2020, 6:46:43 PM",
     "operation": 1,
     "status": "SUCCESS",
     "errorMessage": ""
   },
   {
     "username": "ivona",
-    "date": "May 12, 2020 11:13:31 PM",
-    "operation": 1,
-    "status": "SUCCESS",
-    "errorMessage": ""
-  },
-  {
-    "username": "ivona",
-    "date": "May 12, 2020 11:14:53 PM",
-    "operation": 1,
-    "status": "SUCCESS",
-    "errorMessage": ""
-  },
-  {
-    "username": "ivona",
-    "date": "May 12, 2020 11:15:00 PM",
-    "operation": 7,
-    "status": "SUCCESS",
-    "errorMessage": ""
-  },
-  {
-    "username": "ivona",
-    "date": "May 12, 2020 11:15:13 PM",
-    "operation": 11,
+    "date": "Jun 20, 2020, 6:47:02 PM",
+    "operation": 10,
     "status": "SUCCESS",
     "errorMessage": ""
   }

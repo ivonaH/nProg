@@ -37,7 +37,7 @@ public class FServerConfig extends javax.swing.JFrame {
         jTxtPortNumber = new javax.swing.JTextField();
         jBttnEdit = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Server Configuration");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

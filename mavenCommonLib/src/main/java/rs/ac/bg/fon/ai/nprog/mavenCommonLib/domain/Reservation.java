@@ -6,7 +6,7 @@
 package rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -248,7 +248,7 @@ public class Reservation implements DomainObject, Serializable  {
                 int movieYear = rs.getInt("m.Year");
                 int showtimeId = rs.getInt("s.ShowtimeId");
                 Date showtimeDate = rs.getDate("s.Date");
-                Time showtimeTime =rs.getTime("s.Time") ;
+                Date showtimeTime =(Date)rs.getTime("s.Time") ;
                 int movieId = rs.getInt("m.MovieId");
                 System.out.println("MOVIE ID:"+movieId);
                 int movieDuration = rs.getInt("m.DurationInMinutes");
@@ -259,7 +259,11 @@ public class Reservation implements DomainObject, Serializable  {
 
                 int hallC = rs.getInt("h.Capacity");
 
-                list.add(new Reservation(reservationId, nameLastname, email, new User(userId), new Showtime(showtimeId, showtimeDate, showtimeTime, null, new Hall(hallId, hallN, hallC), new Movie(movieId, movieName, movieYear, movieDuration), null)));
+                list.add(new Reservation(reservationId, nameLastname, email, new User(userId),   new  Showtime(showtimeId, showtimeDate, showtimeTime, new User(), new Hall(hallId,hallN,hallC), new Movie(movieId, movieName, movieYear, movieDuration),
+            			new MovieMarathon())));
+  
+//               new  Showtime(showtimeId, showtimeDate, showtimeTime, new User(), new Hall(hallId,hallN,hallC), new Movie(movieId, movieName, movieYear, movieDuration),
+//            			new MovieMarathon());
             }
         } catch (Exception ex) {
             System.out.println("ERROR ResultSet " + getTableName());

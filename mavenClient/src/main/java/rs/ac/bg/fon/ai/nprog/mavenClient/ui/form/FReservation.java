@@ -219,7 +219,7 @@ public class FReservation extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Morate odabrati projekciju!");
             return;
         }
-        Reservation reservation = new Reservation(jTxtNameLastname.getText(), jTxtEmail.getText(), controller.Controller.getInstance().getCurrentUser(), showtime);
+        Reservation reservation = new Reservation(jTxtNameLastname.getText(), jTxtEmail.getText(), Controller.getInstance().getCurrentUser(), showtime);
         try {
             Controller.getInstance().saveReservation(reservation, this);
         } catch (Exception ex) {

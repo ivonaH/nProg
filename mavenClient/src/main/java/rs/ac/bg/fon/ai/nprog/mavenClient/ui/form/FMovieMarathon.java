@@ -207,7 +207,7 @@ public class FMovieMarathon extends javax.swing.JFrame {
             return;
         }
         String name = jTxtMarathonName.getText();
-        MovieMarathon movieMarathon = new MovieMarathon(name, controller.Controller.getInstance().getCurrentUser());
+        MovieMarathon movieMarathon = new MovieMarathon(name, Controller.getInstance().getCurrentUser());
         try {
             Controller.getInstance().saveMovieMarathon(movieMarathon, showtimes,this);
 

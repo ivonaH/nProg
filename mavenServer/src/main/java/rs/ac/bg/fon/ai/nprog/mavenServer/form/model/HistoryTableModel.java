@@ -6,8 +6,15 @@
 package rs.ac.bg.fon.ai.nprog.mavenServer.form.model;
 
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.User;
+import rs.ac.bg.fon.ai.nprog.mavenCommonLib.util.ResponseStatus;
+import rs.ac.bg.fon.ai.nprog.mavenServer.history.HistoryObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+
+import com.jayway.jsonpath.internal.path.ArraySliceOperation.Operation;
 
 /**
  *
@@ -15,54 +22,56 @@ import javax.swing.table.AbstractTableModel;
  */
 public class HistoryTableModel extends AbstractTableModel {
 
-    String[] columns = {"Korisnicko ime", "Ime", "Prezime"};
-    List<User> users;
+	String[] columns = { "Korisnik", "Datum","Vreme", "Operacija", "Status", "Greska" };
+	List<HistoryObject> history;
 
-    public HistoryTableModel(List<User> users) {
-        this.users = users;
-    }
+	public HistoryTableModel(List<HistoryObject> history) {
+		this.history = history;
+	}
 
-    @Override
-    public int getRowCount() {
-        return users.size();
-    }
+	@Override
+	public int getRowCount() {
+		return history.size();
+	}
 
-    @Override
-    public int getColumnCount() {
-        return columns.length;
-    }
+	@Override
+	public int getColumnCount() {
+		return columns.length;
+	}
 
-    @Override
-    public Object getValueAt(int row, int column) {
-        User user = users.get(row);
-        switch (column) {
-            case 0:
-                return user.getUsername();
-            case 1:
-                return user.getName();
-            case 2:
-                return user.getLastname();
+	@Override
+	public Object getValueAt(int row, int column) {
+		HistoryObject h = history.get(row);
+		switch (column) {
+		case 0:
+			return h.getUsername();
+		case 1:
+			SimpleDateFormat sdf=new SimpleDateFormat("dd.MM.yyyy");
+			return sdf.format(h.getDate());
+		case 2:{
+			SimpleDateFormat sdt=new SimpleDateFormat("HH:mm");
+			return sdt.format(h.getDate());
+		}
+		case 3:
+			return h.getOperation();
+		case 4:
+			return h.getStatus();
+		case 5:
+			return h.getErrorMessage();
+		default:
+			return "n/a";
+		}
+	}
 
-            default:
-                return "n/a";
-        }
-    }
+	@Override
+	public String getColumnName(int column) {
+		return columns[column];
+	}
 
-    @Override
-    public String getColumnName(int column) {
-        return columns[column];
-    }
+	@Override
+	public boolean isCellEditable(int i, int i1) {
+		return false;
+	}
 
-    @Override
-    public boolean isCellEditable(int i, int i1) {
-        return false;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-        fireTableDataChanged();
-    }
-    
-    
 
 }

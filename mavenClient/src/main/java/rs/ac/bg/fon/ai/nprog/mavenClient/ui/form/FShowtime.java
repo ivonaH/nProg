@@ -251,7 +251,7 @@ public class FShowtime extends javax.swing.JDialog {
         if (jComboHall.getSelectedIndex() != -1) {
             Hall selectedHall = (Hall) jComboHall.getSelectedItem();
             try {
-                controller.Controller.getInstance().updateShowtime(showtime, selectedHall, this);
+                Controller.getInstance().updateShowtime(showtime, selectedHall, this);
             } catch (Exception ex) {
                 Logger.getLogger(FShowtime.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -321,7 +321,7 @@ public class FShowtime extends javax.swing.JDialog {
 
     private void fillComboHall() throws Exception {
         jComboHall.removeAllItems();
-        controller.Controller.getInstance().getAllHalls(this);
+        Controller.getInstance().getAllHalls(this);
 
     }
 

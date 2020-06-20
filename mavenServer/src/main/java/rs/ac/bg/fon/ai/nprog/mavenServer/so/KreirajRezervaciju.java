@@ -71,6 +71,7 @@ public class KreirajRezervaciju extends AbstractSystemOperation {
      */
     private void validateReservationDetails() throws Exception {
         try {
+        	System.out.println("Chacking capacity...");
             SaveReservationValidator.checkCapacity(reservation);
         } catch (ValidationException ex) {
             throw new ValidationException("Hall capcity is full for that showtime.");

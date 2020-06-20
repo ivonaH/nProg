@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+
 import rs.ac.bg.fon.ai.nprog.mavenClient.thread.CommunicationWithServer;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.transfer.RequestObject;
 import rs.ac.bg.fon.ai.nprog.mavenClient.ui.form.FLogin;
@@ -32,6 +33,8 @@ import rs.ac.bg.fon.ai.nprog.mavenClient.ui.form.FShowtimeSearch;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.util.Operation;
 import rs.ac.bg.fon.ai.nprog.mavenClient.validation.EmailValidator;
 import rs.ac.bg.fon.ai.nprog.mavenClient.validation.LoginValidator;
+import rs.ac.bg.fon.ai.nprog.mavenClient.validation.SaveMovieMarathonValidator;
+import rs.ac.bg.fon.ai.nprog.mavenClient.validation.ShowtimeValidation;
 
 /**
  *
@@ -190,7 +193,7 @@ public class Controller {
     public void saveShowtime(Showtime showtime, FShowtime fShowtime) throws Exception {
         this.fShowtime = fShowtime;
         try {
-            ShowtimeValidation.validateShowtimeDate(showtime);
+        	ShowtimeValidation.validateShowtimeDate(showtime);
             RequestObject requestObject = new RequestObject();
             requestObject.setOperation(Operation.OPERATION_KREIRAJ_PROJEKCIJU);
             requestObject.setData(showtime);
@@ -230,7 +233,7 @@ public class Controller {
     public void saveMovieMarathon(MovieMarathon movieMarathon, List<Showtime> showtimes, FMovieMarathon fMovieMarathon) throws Exception {
         this.fMovieMarathon = fMovieMarathon;
         try {
-            SaveMovieMarathonValidator.validateShowtimes(showtimes);
+        	SaveMovieMarathonValidator.validateShowtimes(showtimes);
             RequestObject requestObject = new RequestObject();
             requestObject.setOperation(Operation.OPERATION_KREIRAJ_MARATON);
             ArrayList<Object> objectsToAdd = new ArrayList<>();
@@ -423,7 +426,7 @@ public class Controller {
         try {
             fShowtime.showtimeLoaded(showtime);
         } catch (Exception ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        	System.out.println(ex);
         }
     }
 

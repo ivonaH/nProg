@@ -282,6 +282,7 @@ public class FServer extends javax.swing.JFrame {
 	    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
 	           FHistory fHistory=new FHistory(History.getInstance().getAllHistory());
 	           fHistory.setVisible(true);
+	           fHistory.setLocationRelativeTo(null);
 	    }                                          
 
 	    // Variables declaration - do not modify                     

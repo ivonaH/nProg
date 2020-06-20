@@ -343,7 +343,7 @@ public class FReservationSearch extends javax.swing.JDialog {
             return;
         }
         try {
-            controller.Controller.getInstance().getReservationsWithCriteria(columns, values, this);
+            Controller.getInstance().getReservationsWithCriteria(columns, values, this);
 
         } catch (Exception ex) {
             Logger.getLogger(FReservationSearch.class.getName()).log(Level.SEVERE, null, ex);
@@ -378,7 +378,7 @@ public class FReservationSearch extends javax.swing.JDialog {
             ReservationTableModel rtm = (ReservationTableModel) jTableReservation.getModel();
             Reservation reservation = rtm.getReservation(jTableReservation.getSelectedRow());
             try {
-                controller.Controller.getInstance().removeReservation(reservation, this);
+                Controller.getInstance().removeReservation(reservation, this);
             } catch (Exception ex) {
                 Logger.getLogger(FReservationSearch.class.getName()).log(Level.SEVERE, null, ex);
             }

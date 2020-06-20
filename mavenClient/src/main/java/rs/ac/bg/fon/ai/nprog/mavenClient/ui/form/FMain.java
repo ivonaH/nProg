@@ -24,8 +24,9 @@ public class FMain extends javax.swing.JFrame {
     public FMain() throws IOException {
         initComponents();
         setLocationRelativeTo(null);
-        controller.Controller.getInstance().setfMain(this);
-        jLblCurrentUser.setText(controller.Controller.getInstance().getCurrentUser().getName() + " " + controller.Controller.getInstance().getCurrentUser().getLastname());
+        Controller.getInstance().setfMain(this);
+        jLblCurrentUser.setText(Controller.getInstance().getCurrentUser().getName() + " " + Controller.getInstance().getCurrentUser().getLastname());
+
     }
 
     /**

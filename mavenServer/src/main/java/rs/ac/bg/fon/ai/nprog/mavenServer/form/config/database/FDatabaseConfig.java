@@ -43,7 +43,7 @@ public class FDatabaseConfig extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTxtPassword = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Database Configuration");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

@@ -91,7 +91,9 @@ public class History {
 		if (status == ResponseStatus.ERROR) {
 			errorMessage = responseObject.getErrorMessage();
 		}
+		
 		List<HistoryObject> historyObjects = getAllHistory();
+		if(historyObjects==null) historyObjects=new ArrayList<>();
 		HistoryObject historyObject = new HistoryObject(user, date, operation, status, errorMessage);
 		historyObjects.add(historyObject);
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();

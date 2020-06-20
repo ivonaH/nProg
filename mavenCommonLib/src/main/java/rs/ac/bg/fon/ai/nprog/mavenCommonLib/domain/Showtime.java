@@ -300,7 +300,7 @@ public class Showtime implements DomainObject, Serializable {
 			while (rs.next()) {
 				int showtimeId = rs.getInt("ShowtimeId");
 				Date date = rs.getDate("Date");
-				Date time = rs.getTime("Time");
+				Date time = (Date) rs.getTime("Time");
 				int userId = rs.getInt("UserId");
 				int hallId = rs.getInt("HallId");
 				int movieId = rs.getInt("t.MovieId");

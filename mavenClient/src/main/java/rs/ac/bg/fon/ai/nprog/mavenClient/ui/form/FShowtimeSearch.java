@@ -431,7 +431,7 @@ public class FShowtimeSearch extends javax.swing.JDialog {
         if (selectedRow != -1) {
             ShowtimeTableModel stm = (ShowtimeTableModel) jTableShowtime.getModel();
             try {
-                controller.Controller.getInstance().removeShowtime(stm.getShowtime(selectedRow), this);
+                Controller.getInstance().removeShowtime(stm.getShowtime(selectedRow), this);
             } catch (Exception ex) {
                 Logger.getLogger(FShowtimeSearch.class.getName()).log(Level.SEVERE, null, ex);
             }

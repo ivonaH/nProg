@@ -17,6 +17,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Genre;
+import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Hall;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Movie;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Reservation;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Showtime;
@@ -55,7 +56,7 @@ public class KreirajRezervacijuTest {
 		query="INSERT INTO movie(MovieId,Name, Genre, Director, Year, DurationInMinutes, UserId) values (1,'Movie1','adventure','Director 1',2020,120,1)";
 		statement.executeUpdate(query);
 		
-		query="INSERT INTO hall values (1,'Hall1',1)";
+		query="INSERT INTO hall values (1,'Hall1',10)";
 		statement.executeUpdate(query);
 		
 		query="insert into showtime(ShowtimeId,Date,UserId,HallId,MovieId,time) VALUES(1,'2020-05-15',1,1,1,'15:00:00')";
@@ -103,8 +104,10 @@ public class KreirajRezervacijuTest {
 	
 	@Test
 	public void testSacuvajUBazi() throws Exception {
-
-		Reservation reservation=new Reservation("Pera Peric", "pera@gmail.com", new User(1), new Showtime(1));
+		Showtime showtime=new Showtime();
+		showtime.setHall(new Hall(1,"Hall1",10));
+		showtime.setShowtimeId(1);
+		Reservation reservation=new Reservation("Pera Peric", "pera@gmail.com", new User(1), showtime);
 		
 		kreirajRezervaciju=new KreirajRezervaciju(reservation);
 		kreirajRezervaciju.executeOperation();
@@ -133,6 +136,6 @@ public class KreirajRezervacijuTest {
            
 
 
-	}
+}
 
 }

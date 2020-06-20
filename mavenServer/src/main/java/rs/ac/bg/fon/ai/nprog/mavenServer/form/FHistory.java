@@ -1,15 +1,21 @@
 package rs.ac.bg.fon.ai.nprog.mavenServer.form;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.JTableHeader;
 
 import com.google.gson.JsonArray;
 
+import rs.ac.bg.fon.ai.nprog.mavenServer.controller.Controller;
+import rs.ac.bg.fon.ai.nprog.mavenServer.form.model.HistoryTableModel;
+import rs.ac.bg.fon.ai.nprog.mavenServer.form.model.UserTableModel;
 import rs.ac.bg.fon.ai.nprog.mavenServer.history.History;
 import rs.ac.bg.fon.ai.nprog.mavenServer.history.HistoryObject;
 
@@ -19,6 +25,8 @@ public class FHistory extends javax.swing.JFrame {
 	 * Creates new form FHistory
 	 */
 	public FHistory(List<HistoryObject> history) {
+		setLocationRelativeTo(null);
+		setResizable(false);
 		initComponents();
 		fillForm(history);
 	}
@@ -34,17 +42,26 @@ public class FHistory extends javax.swing.JFrame {
 
 		jPanel1 = new javax.swing.JPanel();
 		jScrollPane1 = new javax.swing.JScrollPane();
-		jtxtHistory = new javax.swing.JTextArea();
+//		jtxtHistory = new javax.swing.JTextArea();
+		jTblHistory = new javax.swing.JTable();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
 		jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search History",
 				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
 				new java.awt.Font("Tahoma", 0, 16), new java.awt.Color(0, 0, 102))); // NOI18N
 
-		jtxtHistory.setColumns(20);
-		jtxtHistory.setRows(5);
-		jScrollPane1.setViewportView(jtxtHistory);
+//		jtxtHistory.setColumns(20);
+//		jtxtHistory.setRows(5);
+//		jScrollPane1.setViewportView(jtxtHistory);
+
+		jTblHistory.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+		jTblHistory.setForeground(new java.awt.Color(0, 0, 102));
+		jTblHistory.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
+
+		}, new String[] { "Username", "Firstname", "Lastname" }));
+		jTblHistory.setGridColor(new java.awt.Color(204, 204, 255));
+		jScrollPane1.setViewportView(jTblHistory);
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
@@ -73,10 +90,21 @@ public class FHistory extends javax.swing.JFrame {
 	// Variables declaration - do not modify
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JTextArea jtxtHistory;
+//	private javax.swing.JTextArea jtxtHistory;
+	private javax.swing.JTable jTblHistory;
+
 	// End of variables declaration
 
+
 	public void fillForm(List<HistoryObject> history) {
-		jtxtHistory.setText(history.toString());
+		HistoryTableModel userTableModel = new HistoryTableModel(history);
+		jTblHistory.setModel(userTableModel);
+		JTableHeader header = jTblHistory.getTableHeader();
+		header.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		header.setForeground(Color.decode("#12207B"));
+		header.setBackground(Color.decode("#C0E2F0"));
+		jTblHistory.getColumnModel().getColumn(0).setPreferredWidth(70);
+		jTblHistory.getColumnModel().getColumn(1).setPreferredWidth(110);
+		jTblHistory.getColumnModel().getColumn(2).setPreferredWidth(70);
 	}
 }
