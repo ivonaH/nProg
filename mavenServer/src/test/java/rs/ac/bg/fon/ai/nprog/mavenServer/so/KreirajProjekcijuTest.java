@@ -23,6 +23,7 @@ import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Movie;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.MovieMarathon;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Showtime;
 import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.User;
+import rs.ac.bg.fon.ai.nprog.mavenCommonLib.exception.ValidationException;
 import rs.ac.bg.fon.ai.nprog.mavenServer.configuration.Configuration;
 import rs.ac.bg.fon.ai.nprog.mavenServer.database.DatabaseConnection;
 
@@ -60,6 +61,9 @@ public class KreirajProjekcijuTest {
 		query="INSERT INTO hall values (1,'Hall1',1)";
 		statement.executeUpdate(query);
 		
+		query = "insert into showtime(ShowtimeId,Date,UserId,HallId,MovieId,time) VALUES(1,'2020-05-15',1,1,1,'14:00:00')";
+		statement.executeUpdate(query);
+		
 		connection.commit();
         statement.close();
 
@@ -94,7 +98,7 @@ public class KreirajProjekcijuTest {
 	}
 	
 	@Test
-	public void testSacuvajUBazi() throws Exception {
+	public void testSacuvajUBaziUspesno() throws Exception {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -104,12 +108,12 @@ public class KreirajProjekcijuTest {
 		Movie movie=new Movie(); 
 		movie.setMovieId(1);
 		
-		Showtime showtime=new Showtime(sdf.parse("2020-05-15"), stf.parse("15:00:00"), new User(1), hall, movie);
+		Showtime showtime=new Showtime(sdf.parse("2020-05-15"), stf.parse("10:00:00"), new User(1), hall, movie);
 		
 		KreirajProjekciju kreirajProjekciju=new KreirajProjekciju(showtime);
 		kreirajProjekciju.executeOperation();
 		
-		String querySelect="SELECT * FROM showtime Where showtimeId=1";
+		String querySelect="SELECT * FROM showtime Where showtimeId=2";
 		Statement statement = connection.createStatement();
 		ResultSet rs=statement.executeQuery(querySelect);
 		List<Showtime> list=new ArrayList<>();
@@ -129,10 +133,29 @@ public class KreirajProjekcijuTest {
 			list.add(new Showtime(showtimeId, date, time, new User(userId), h,
 					m, new MovieMarathon(movieMarathonId)));
 		}
+		statement.close();
 
            Showtime showtimeDb=list.get(0);
            assertEquals(showtime, showtimeDb);
 
+	}
+	
+	
+	@Test(expected = ValidationException.class)
+	public void testSacuvajUBaziNespesnoSalaZauzeta() throws Exception {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		SimpleDateFormat stf = new SimpleDateFormat("HH:mm:ss");
+		Hall hall=new Hall();
+		hall.setHallId(1);
+		Movie movie=new Movie(); 
+		movie.setMovieId(1);
+		
+		Showtime showtime=new Showtime(sdf.parse("2020-05-15"), stf.parse("15:00:00"), new User(1), hall, movie);
+		System.out.println("Izvrsio neuspesno");
+
+		KreirajProjekciju kreirajProjekciju=new KreirajProjekciju(showtime);
 	}
 
 }
