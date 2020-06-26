@@ -26,7 +26,6 @@ public class VratiListuSala extends AbstractSystemOperation {
     /**
   	 * Metoda koja vraca listu sala iz baze.
   	 * 
-  	 * @param object  Objekat koji zelimo da pronadjemo.
   	 * 
   	 * @throws Exception ako dodje do greske prilikom trazenja sala.
   	 */
