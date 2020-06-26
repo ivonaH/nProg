@@ -66,7 +66,7 @@ public class MovieMarathon implements DomainObject, Serializable {
 	/**
 	 * Parametrizovani konstruktor za filmski maraton.
 	 * 
-	 * @param marathonId indentifikator maratona
+	 * @param movieMarathonId indentifikator maratona
 	 */
 	public MovieMarathon(int movieMarathonId) {
 		this.marathonId = movieMarathonId;
@@ -142,7 +142,7 @@ public class MovieMarathon implements DomainObject, Serializable {
 	 * filmski maraton koje zelimo da sacuvamo u tabeli.
 	 * 
 	 * @return String koji predstavlja vrednosti (za filmski paraton) koje ubacujemo
-	 *         u tabelu; u ovom slucaju to su indentifikator id maratona, naziv
+	 *         u tabelu; u ovom slucaju to su indentifikator maratona, naziv
 	 *         maratona i korisnik koji je uneo maraton.
 	 */
 	@Override

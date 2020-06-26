@@ -108,7 +108,7 @@ public class Movie implements DomainObject, Serializable  {
     /**
      * Parametrizovani konstruktor za film
      * @param movieId indentifikator filma
-     * @param name naziv filma
+     * @param movieName naziv filma
      * @param year godina objavljivanja filma
      * @param durationInMinutes trajanje filma u minutima
      */
@@ -131,7 +131,7 @@ public class Movie implements DomainObject, Serializable  {
     /**
 	 * Set metoda za movieId.
 	 * 
-	 * @param indentifikator filma
+	 * @param movieId indentifikator filma
 	 */
     public void setMovieId(int movieId) {
         this.movieId = movieId;
@@ -144,7 +144,7 @@ public class Movie implements DomainObject, Serializable  {
     /**
    	 * Set metoda za naziv filma.
    	 * 
-   	 * @param naziv filma filma
+   	 * @param name naziv filma filma
    	 */
     public void setName(String name) {
         this.name = name;
@@ -162,7 +162,7 @@ public class Movie implements DomainObject, Serializable  {
     /**
    	 * Set metoda za genre.
    	 * 
-   	 * @param zanr filma
+   	 * @param genre zanr filma
    	 */
     public void setGenre(Genre genre) {
         this.genre = genre;
@@ -181,7 +181,7 @@ public class Movie implements DomainObject, Serializable  {
     /**
    	 * Set metoda za rezisera.
    	 * 
-   	 * @param reziser filma
+   	 * @param director reziser filma
    	 */
     public void setDirector(String director) {
         this.director = director;
@@ -199,7 +199,7 @@ public class Movie implements DomainObject, Serializable  {
     /**
    	 * Set metoda za godinu objavljivanja filma.
    	 * 
-   	 * @param godina objavljivanja filma
+   	 * @param year godina objavljivanja filma
    	 */
     public void setYear(int year) {
         this.year = year;
@@ -217,7 +217,7 @@ public class Movie implements DomainObject, Serializable  {
     /**
    	 * Set metoda za korisnika.
    	 * 
-   	 * @param korisnik koji je uneo film
+   	 * @param user korisnik koji je uneo film
    	 */
     public void setUser(User user) {
         this.user = user;
@@ -235,7 +235,7 @@ public class Movie implements DomainObject, Serializable  {
     /**
    	 * Set metoda za trajanje filma u minutima.
    	 * 
-   	 * @param trajanje filma u minutima
+   	 * @param durationInMinutes trajanje filma u minutima
    	 */
     public void setDurationInMinutes(int durationInMinutes) {
         this.durationInMinutes = durationInMinutes;
@@ -345,7 +345,7 @@ public class Movie implements DomainObject, Serializable  {
 
     /**
      * Vraca string sa podacima o filmu: <ol>
-     * <li> name <li>year</ol>
+     * <li> name</li> <li>year</li></ol>
      * @return String Podaci o filmu u tekstualnom formatu.
      */
     @Override
