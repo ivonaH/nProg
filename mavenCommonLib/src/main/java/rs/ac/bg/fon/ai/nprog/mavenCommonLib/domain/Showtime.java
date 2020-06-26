@@ -117,7 +117,7 @@ public class Showtime implements DomainObject, Serializable {
 	/**
 	 * set metoda za showtimeId.
 	 * 
-	 * @param indentifikator projekcije
+	 * @param showtimeId indentifikator projekcije
 	 */
 	public void setShowtimeId(int showtimeId) {
 		this.showtimeId = showtimeId;
@@ -148,7 +148,7 @@ public class Showtime implements DomainObject, Serializable {
 	/**
 	 * Set metoda za vreme projekcije.
 	 * 
-	 * @param vreme projekcije
+	 * @param time vreme projekcije
 	 */
 	public void setTime(Date time) {
 		this.time = time;
@@ -166,7 +166,7 @@ public class Showtime implements DomainObject, Serializable {
 	/**
 	 * Set metoda za korisnika.
 	 * 
-	 * @param korisnik koji je uneo projekciju
+	 * @param user korisnik koji je uneo projekciju
 	 */
 	public void setUser(User user) {
 		this.user = user;
@@ -175,7 +175,7 @@ public class Showtime implements DomainObject, Serializable {
 	/**
 	 * Get metoda za salu.
 	 * 
-	 * @return <b>hall</b> sala u kojoj se odrzava projekcija
+	 * @return hall sala u kojoj se odrzava projekcija
 	 */
 	public Hall getHall() {
 		return hall;
@@ -202,7 +202,7 @@ public class Showtime implements DomainObject, Serializable {
 	/**
 	 * Set metoda za film.
 	 * 
-	 * @param film koji se prikazuje na projekciji
+	 * @param movie film koji se prikazuje na projekciji
 	 */
 	public void setMovie(Movie movie) {
 		this.movie = movie;
@@ -220,7 +220,7 @@ public class Showtime implements DomainObject, Serializable {
 	/**
 	 * Set metoda za filmski maraton.
 	 * 
-	 * @param maraton na kom se prikazuje projekcija
+	 * @param movieMarathon filmski maraton na kom se prikazuje projekcija
 	 */
 	public void setMovieMarathon(MovieMarathon movieMarathon) {
 		this.movieMarathon = movieMarathon;

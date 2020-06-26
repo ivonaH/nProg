@@ -93,7 +93,7 @@ public class User implements DomainObject, Serializable {
     /**
 	 * Set metoda za indentifikator korisnika
 	 * 
-	 * @param indentifikator korisnika
+	 * @param userId indentifikator korisnika
 	 */
     public void setUserId(int userId) {
         this.userId = userId;
@@ -111,7 +111,7 @@ public class User implements DomainObject, Serializable {
     /**
    	 * Set metoda za korisnicko ime
    	 * 
-   	 * @param korisnicko ime
+   	 * @param username korisnicko ime
    	 */
     public void setUsername(String username) {
         this.username = username;
@@ -129,7 +129,7 @@ public class User implements DomainObject, Serializable {
     /**
    	 * Set metoda za ime korisnika.
    	 * 
-   	 * @param ime korisnika
+   	 * @param name ime korisnika
    	 */
     public void setName(String name) {
         this.name = name;
@@ -147,7 +147,7 @@ public class User implements DomainObject, Serializable {
     /**
    	 * Set metoda za prezime korisnika.
    	 * 
-   	 * @param prezime korisnika
+   	 * @param lastname prezime korisnika
    	 */
     public void setLastname(String lastname) {
         this.lastname = lastname;
@@ -165,7 +165,7 @@ public class User implements DomainObject, Serializable {
     /**
    	 * Set metoda za sifru korisnika.
    	 * 
-   	 * @param sifra korisnika
+   	 * @param password sifra korisnika
    	 */
     public void setPassword(String password) {
         this.password = password;

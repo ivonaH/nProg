@@ -50,7 +50,7 @@ public class Reservation implements DomainObject, Serializable  {
     }
 
     /**
-     * Neparametrizovani konstruktor za rezervaciju.
+     * Parametrizovani konstruktor za rezervaciju.
      * @param reservationId indentifikator rezervacije
      * @param nameLastname ime i prezime osobe na koju se vrsi rezervacija
      * @param email osobe na koju se vrsi rezervacija
@@ -66,7 +66,7 @@ public class Reservation implements DomainObject, Serializable  {
     }
     
     /**
-     * Neparametrizovani konstruktor za rezervaciju.
+     * Parametrizovani konstruktor za rezervaciju.
      * @param nameLastname ime i prezime osobe na koju se vrsi rezervacija
      * @param email osobe na koju se vrsi rezervacija
      * @param user korisnik koji je uneo rezervaciju
@@ -144,7 +144,7 @@ public class Reservation implements DomainObject, Serializable  {
      /**
     	 * Set metoda za korisnika.
     	 * 
-    	 * @param korisnik koji je uneo rezervaciju
+    	 * @param user korisnik koji je uneo rezervaciju
     	 */
      public void setUser(User user) {
          this.user = user;
@@ -162,7 +162,7 @@ public class Reservation implements DomainObject, Serializable  {
     /**
 	 * Set metoda za projekciju.
 	 * 
-	 * @param projekcija
+	 * @param showtime projekcija
 	 */
     public void setShowtime(Showtime showtime) {
         this.showtime = showtime;
@@ -284,7 +284,7 @@ public class Reservation implements DomainObject, Serializable  {
         return "ReservationId=" + reservationId + ", NameLastname= '" + nameLastname + "', Email='" + email + "', UserId=" + user.getUserId() + ", ShowtimeId=" + showtime.getShowtimeId();
     }
 
-    /*
+    /**
  	 * Implementirana metoda iz interfejsa DomainObject.
  	 * Metoda vraca uslov za spajanje tabele sa 2. tabelom.
  	 * 
@@ -299,7 +299,8 @@ public class Reservation implements DomainObject, Serializable  {
     /**
      * Vraca string sa podacima o rezervaciji: 
      * <ol>
-     * <li> ime i prezime osobe na koju se vrsi rezervacija <li>ime projekcije</ol>
+     * <li> ime i prezime osobe na koju se vrsi rezervacija </li>
+     *  <li>ime projekcije</li></ol>
      * @return String Podaci o rezervaciji u tekstualnom formatu.
      */
     @Override
