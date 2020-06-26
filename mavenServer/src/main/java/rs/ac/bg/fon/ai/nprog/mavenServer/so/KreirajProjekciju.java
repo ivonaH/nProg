@@ -23,7 +23,7 @@ import java.util.List;
 public class KreirajProjekciju extends AbstractSystemOperation {
 
 	/**
-	 * objekat koji zelimo da sacuvamo.
+	 * Projekcija koju zelimo da sacuvamo.
 	 */
 	Showtime showtime;
 
@@ -31,8 +31,8 @@ public class KreirajProjekciju extends AbstractSystemOperation {
 	 * Parametrizovani konstruktor metode kreiraj projekciju.
 	 * 
 	 * @param object koji zelimo da sacuvamo
-	 * @throws Exception ako primljeni objekat nije instanca klase Showtime ili ako
-	 *                   sala nije dostupna u tom terminu.
+	 * @throws Exception dolazi zbog sledecih razloga:<ul><li>ako primljeni objekat nije instanca klase Showtime</li><li> ako
+	 *                   sala nije dostupna u tom terminu.</li></ul>
 	 */
 	public KreirajProjekciju(Object object) throws Exception {
 		validate(object);

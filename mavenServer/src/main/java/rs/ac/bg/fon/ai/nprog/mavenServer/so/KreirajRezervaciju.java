@@ -21,7 +21,7 @@ import java.util.List;
 */
 public class KreirajRezervaciju extends AbstractSystemOperation {
 	/**
-	 * objekat koji zelimo da sacuvamo.
+	 * Rezervaciju koju zelimo da sacuvamo.
 	 */
 	Reservation reservation;
 
@@ -29,8 +29,8 @@ public class KreirajRezervaciju extends AbstractSystemOperation {
 	 * Parametrizovani konstruktor metode kreiraj rezervaciju.
 	 * 
 	 * @param object koji zelimo da sacuvamo
-	 * @throws Exception ako primljeni objekat nije instanca klase Reservation ili ako 
-	 * nema dovoljno mesta na projekciji koju zelimo da rezervisemo.
+	 * @throws Exception se javlja iz sledecih razloga<ul><li>ako primljeni objekat nije instanca klase Reservation </li><li>ako 
+	 * nema dovoljno mesta na projekciji koju zelimo da rezervisemo.</li></ul>
 	 */
 	public KreirajRezervaciju(Object object) throws Exception {
 		validate(object);
@@ -66,7 +66,7 @@ public class KreirajRezervaciju extends AbstractSystemOperation {
         }
     }
     /**
-     * Metoda koja proverava da li ima slobodnih mesta u sali za projekciju koju zelimo da sacuvamo.
+     * Metoda koja proverava da li ima slobodnih mesta u sali za projekciju koju zelimo da rezervisemo.
      * @throws Exception ako nema mesta dolazi do izuzetka.
      */
     private void validateReservationDetails() throws Exception {

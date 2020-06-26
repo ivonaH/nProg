@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class ObrisiRezervaciju extends AbstractSystemOperation {
 	/**
-	 * objekat koji zelimo da obrisemo.
+	 * Rezervacija koju zelimo da obrisemo.
 	 */
 	Reservation reservation;
 

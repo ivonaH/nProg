@@ -20,7 +20,7 @@ import java.util.List;
 public class ObrisiProjekciju extends AbstractSystemOperation {
 
 	/**
-	 * objekat koji zelimo da obrisemo.
+	 * Projekcija koju zelimo da obrisemo.
 	 */
 	Showtime showtime;
 
@@ -38,7 +38,7 @@ public class ObrisiProjekciju extends AbstractSystemOperation {
 	/**
 	 * Metoda koja brise projekciju iz baze.
 	 * 
-	 * @throws Exception ako dodje do greske prilikom brisanja objekta iz baze.
+	 * @throws Exception ako dodje do greske prilikom brisanja projekcije iz baze.
 	 */
     @Override
     protected void executeSpecificOperation() throws Exception {
