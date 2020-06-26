@@ -38,7 +38,6 @@ public class NadjiRadnika extends AbstractSystemOperation {
 	 * 
 	 * @param columns Lista u kojoj su zadati nazivi kolona po kojima trazimo korisnika.
 	 * @param values  Lista u kojoj su zadate vrednosti kolona po kojima trazimo korisnika.
-	 * @throws Exception
 	 */
 	public NadjiRadnika(List<String> columns, List<String> values) {
 		this.columns = columns;
