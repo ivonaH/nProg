@@ -25,9 +25,9 @@ public interface DomainObject {
 	String getTableName();
 
 	/**
-	 * Metoda vraca vrednosti za domenski objekat koji zelimo da sacuvamo u tabeli.
+	 * Metoda vraca vrednosti parametara za domenski objekat koji zelimo da sacuvamo u tabeli.
 	 * 
-	 * @return String koji predstavlja vrednosti (za dati domenski objekat) koje
+	 * @return String koji predstavlja vrednosti parametara (za dati domenski objekat) koje
 	 *         ubacujemo u tabelu.
 	 */
 	String getParameters();
@@ -43,14 +43,14 @@ public interface DomainObject {
 	/**
 	 * Metoda vraca vrednost primarnog kljuca za dati domenski objekat.
 	 * 
-	 * @return int vrednost primarnog kljuca.
+	 * @return int vrednost primarnog kljuca domenskog objekta.
 	 */
 	int getPrimaryKeyValue();
 
 	/**
 	 * Metoda vraca naziv primarnog kljuca za dati domenski objekat.
 	 * 
-	 * @return String naziv primarnog kljuca.
+	 * @return String naziv primarnog kljuca domenskog objekta.
 	 */
 	String getPrimaryKeyName();
 
@@ -71,13 +71,13 @@ public interface DomainObject {
 	 */
 	String getUpdateQuery();
 
-	/*
+	/**
 	 * Metoda vraca uslov za spajanje tabele sa 2. tabelom.
 	 * 
 	 * @return String metoda vraca uslov za spajanje tabele sa 2. tabelama.
 	 */
 	String getJoinCondition();
-	/*
+	/**
 	 * Metoda vraca uslov za sortiranje vrednosti.
 	 * 
 	 * @return String string uslov za sortiranje.

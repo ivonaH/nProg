@@ -39,7 +39,7 @@ public class Hall implements DomainObject, Serializable {
 	 * 
 	 * @param hallId  predstavlja indentifikator sale
 	 * @param name    predstavlja ime sale
-	 * @param capcity predstavlja kapacitet sale
+	 * @param capacity predstavlja kapacitet sale
 	 * 
 	 */
 	public Hall(int hallId, String name, int capacity) {
@@ -66,7 +66,7 @@ public class Hall implements DomainObject, Serializable {
 	/**
 	 * Set metoda za hallId.
 	 * 
-	 * @param indentifikator sale
+	 * @param hallId indentifikator sale
 	 */
 	public void setHallId(int hallId) {
 		this.hallId = hallId;
@@ -84,7 +84,7 @@ public class Hall implements DomainObject, Serializable {
 	/**
 	 * Set metoda za ime sale.
 	 * 
-	 * @param ime sale
+	 * @param name ime sale
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -102,7 +102,7 @@ public class Hall implements DomainObject, Serializable {
 	/**
 	 * Set metoda za kapacitet sale.
 	 * 
-	 * @param kapacitet sale
+	 * @param capacity kapacitet sale
 	 */
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
@@ -241,7 +241,7 @@ public class Hall implements DomainObject, Serializable {
 	}
 
 	/**
-	 * Proverava da li su dve sale iste. 
+	 * Equals metoda proverava da li su dve sale iste. 
 	 * Poredi sale po atributu <i><b> hallId</b></i>
 	 * @param obj Hall koju zelimo da uporedimo sa zeljenom salom.
 	 * @return true ako su dve sale iste po ovim parametrima, ako nisu vraca <b> false</b>.
