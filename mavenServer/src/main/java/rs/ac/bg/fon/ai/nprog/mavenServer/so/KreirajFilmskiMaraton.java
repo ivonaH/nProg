@@ -28,7 +28,7 @@ public class KreirajFilmskiMaraton extends AbstractSystemOperation {
 	 */
 	Object object;
 	/**
-	 * objekat koji zelimo da sacuvamo.
+	 * FilmskiMaraton koji zelimo da sacuvamo.
 	 */
 	MovieMarathon mm;
 

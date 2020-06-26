@@ -19,12 +19,12 @@ import java.util.List;
  * 
  * @version 1.0
  * 
- *          Klasa IzmeniProjekciju predstavlja sistemsku operaciju koja menja
- *          podatke u bazi u projekciji. Nasledjuje AbstractSystemOperation.
+ *          Klasa IzmeniProjekciju predstavlja sistemsku operaciju koja omogucava izmenu podataka o projekciji
+ *          u bazi. Nasledjuje AbstractSystemOperation.
  */
 public class IzmeniProjekciju extends AbstractSystemOperation {
 	/**
-	 * objekat koji zelimo da izmenimo
+	 * Projekcija koju zelimo da izmenimo u bazi.
 	 */
 	Showtime showtime;
 
@@ -32,9 +32,13 @@ public class IzmeniProjekciju extends AbstractSystemOperation {
 	 * Parametrizovani konstruktor metode izmeni projekciju.
 	 * 
 	 * @param object koji zelimo da izmenimo
-	 * @throws Exception ako primljeni objekat nije instanca klase Showtime, ili
-	 * ako je sala zauzeta u tom terminu, ili ako je nova sala premalog kapaciteta 
-	 * (postoji vise rezervacija nego sto je kapacitet nove sale).
+	 * @throws Exception 
+	 * <ul>
+	 * <li>ako primljeni objekat nije instanca klase Showtime </li>
+	 * <li> ako je sala zauzeta u tom terminu</li>
+	 * <li> ako je nova sala premalog kapaciteta 
+	 * (postoji vise rezervacija nego sto je kapacitet nove sale)</li>
+	 * </ul>
 	 */
 	public IzmeniProjekciju(Object object) throws Exception {
 		validate(object);
@@ -67,17 +71,16 @@ public class IzmeniProjekciju extends AbstractSystemOperation {
 	}
 	
 	/**
-	 * 
-	 * @throws ValidationException <ul> Ukoliko 
+	 * Metoda koja vrsi proveru da li je moguce sacuvati projekciju.
+	 * @throws ValidationException moze da se dogodi u sledecim slucajevima:<ul>
 	 * <li>Ako je sala zauzeta u tom terminu </li>
-	 * <li>Ukoliko ima vise rezervacija nego sto je kapacitet sale koju pokusava da postavi </li>
-	 * </li> dolazi do izuzetka.
+	 * <li>Ukoliko ima vise rezervacija nego sto je kapacitet nove sale koju pokusava da postavi </li>
+	 *  </ul>
 	 */
     protected void validateShowtimeDetails() throws ValidationException {
         try {
             SaveShowtimeValidator.validateShowtime(showtime);
             UpdateShowtimeValidator.checkNewHallCapacity(showtime);
-
         } catch (Exception ex) {
             throw new ValidationException(ex.getMessage());
         }

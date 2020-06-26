@@ -25,7 +25,7 @@ public abstract class AbstractSystemOperation {
 	protected DBBroker dbb;
 
 	/**
-	 * Konstruktor AbstractSystemOperation u kom se inicijalizuje broker baze
+	 * Neparametrizovani konstruktor AbstractSystemOperation u kom se inicijalizuje broker baze
 	 * podataka.
 	 */
 	public AbstractSystemOperation() {
@@ -34,15 +34,12 @@ public abstract class AbstractSystemOperation {
 	}
 
 	/**
-	 * Opsta metoda koja upravlja transakcijama vezanim za domenski objekat. Metoda
-	 * prvo proverava validnost zadatog objekta. Postavlja konekciji auto commit na
+	 * Opsta metoda koja upravlja transakcijama vezanim za domenski objekat.
+	 * Postavlja konekciji auto commit na
 	 * false. Kada se specificna operacija uspesno izvrsi, belezi je u bazu. U
-	 * slucaju da se operacija ne izvrsi uspesno, promene se odbacuju.
+	 * slucaju da se operacija ne izvrsi uspesno (dodje do izuzetka), promene se odbacuju.
 	 * 
 	 * 
-	 * @param object  Objekat klase nad kojim vrsimo operaciju.
-	 * @param columns Predstavlja listu u kojoj ce biti zadati nazivi kolona.
-	 * @param values  Predstavlja listu u kojoj ce biti zadati vrednosti kolona.
 	 * @throws Exception ako se operacija ne izvrsi uspesno.
 	 */
 	public final void executeOperation() throws Exception {
@@ -60,16 +57,15 @@ public abstract class AbstractSystemOperation {
 	/**
 	 * Apstraktna metoda u kojoj se pozivaju specificne operacije za domenski
 	 * objekat.
-	 * 
-	 * @param object  Objekat klase nad kojim vrsimo operaciju.
-	 * @param columns Predstavlja listu u kojoj ce biti zadati nazivi kolona.
-	 * @param values  Predstavlja listu u kojoj ce biti zadati vrednosti kolona.
 	 * @throws Exception ako se operacija ne izvrsi uspesno.
 	 */
 	protected abstract void executeSpecificOperation()
 			throws Exception;
 	
-	
+	/**
+	 * Metoda koja vraca instancu brokera baze podataka.
+	 * @return instanca brokera baze podataka
+	 */
 	public DBBroker getDbb() {
 		return dbb;
 	}

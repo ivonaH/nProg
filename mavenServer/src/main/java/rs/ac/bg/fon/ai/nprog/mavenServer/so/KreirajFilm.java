@@ -23,7 +23,7 @@ import java.util.List;
 */
 public class KreirajFilm extends AbstractSystemOperation {
 	/**
-	 * objekat koji zelimo da sacuvamo.
+	 * Film koji zelimo da sacuvamo u bazi.
 	 */
 	Movie movie;
 
