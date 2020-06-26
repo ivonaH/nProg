@@ -41,18 +41,14 @@ public class VratiListuMaratonaPoKriterijumu extends AbstractSystemOperation {
  * 
  * @param columns Lista u kojoj su zadati nazivi kolona po kojima trazimo listu maratone.
  * @param values  Lista u kojoj su zadate vrednosti kolona po kojima trazimo maratone.
- * @throws Exception
  */
-	public VratiListuMaratonaPoKriterijumu(List<String> columns, List<String> values) throws Exception {
+	public VratiListuMaratonaPoKriterijumu(List<String> columns, List<String> values){
 		this.columns = columns;
 		this.values = values;
 	}
 
 	/**
-	 * Metoda koja vraca listu filmskih maratona iz baze po odredjenom kritrerijumu.
-	 * 
-	 * @param object Objekat koji zelimo da pronadjemo.
-	 * 
+	 * Metoda koja vraca listu filmskih maratona iz baze po odredjenom kritrerijumu.	  
 	 * @throws Exception ako dodje do greske prilikom trazenja filmskih maratona.
 	 */
 	@Override
