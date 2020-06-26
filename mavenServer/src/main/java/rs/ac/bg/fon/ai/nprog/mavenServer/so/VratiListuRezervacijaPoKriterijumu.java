@@ -22,12 +22,12 @@ import java.util.List;
 public class VratiListuRezervacijaPoKriterijumu extends AbstractSystemOperation {
 	/**
 	 * Predstavlja listu u kojoj ce biti zadati nazivi kolona po kojima trazimo
-	 * listu maratona.
+	 * listu rezervacija.
 	 */
 	List<String> columns;
 	/**
 	 * Predstavlja listu u kojoj ce biti zadati vrednosti kolona po kojima trazimo
-	 * listu maratona.
+	 * listu rezervacija.
 	 */
 	List<String> values;
 	
@@ -42,9 +42,8 @@ public class VratiListuRezervacijaPoKriterijumu extends AbstractSystemOperation 
  * 
  * @param columns Lista u kojoj su zadati nazivi kolona po kojima trazimo listu rezervacija.
  * @param values  Lista u kojoj su zadate vrednosti kolona po kojima trazimo rezervacije.
- * @throws Exception
  */
-	public VratiListuRezervacijaPoKriterijumu(List<String> columns, List<String> values) throws Exception {
+	public VratiListuRezervacijaPoKriterijumu(List<String> columns, List<String> values){
 		this.columns = columns;
 		this.values = values;
 	}

@@ -35,13 +35,12 @@ public class VratiListuProjekcijaPoKriterijumu extends AbstractSystemOperation {
 
 
  /**
- * Parametrizovani konstruktor metode koja vraca listu filmova po odredjenom kriterijumu.
+ * Parametrizovani konstruktor metode koja vraca listu projekcija po odredjenom kriterijumu.
  * 
- * @param columns Lista u kojoj su zadati nazivi kolona po kojima trazimo listu filmova.
- * @param values  Lista u kojoj su zadate vrednosti kolona po kojima trazimo filmove.
- * @throws Exception
+ * @param columns Lista u kojoj su zadati nazivi kolona po kojima trazimo listu projekcija.
+ * @param values  Lista u kojoj su zadate vrednosti kolona po kojima trazimo projekcije.
  */
- 	public VratiListuProjekcijaPoKriterijumu(List<String> columns, List<String> values) throws Exception {
+ 	public VratiListuProjekcijaPoKriterijumu(List<String> columns, List<String> values){
  		this.columns = columns;
  		this.values = values;
  	}
@@ -50,7 +49,6 @@ public class VratiListuProjekcijaPoKriterijumu extends AbstractSystemOperation {
     /**
    	 * Metoda koja vraca listu projekcija iz baze po odredjenom kritrerijumu.
    	 * 
-   	 * @param object  Objekat koji zelimo da pronadjemo.
    	 * @throws Exception ako dodje do greske prilikom trazenja projekcija.
    	 */
     @Override
@@ -60,7 +58,7 @@ public class VratiListuProjekcijaPoKriterijumu extends AbstractSystemOperation {
 
     /**
      * Metoda koja vraca listu projekcija
-     * @return
+     * @return lista projekcija koju smo trazili
      */
     public List<Showtime> getShowtimes() {
         return showtimes;
