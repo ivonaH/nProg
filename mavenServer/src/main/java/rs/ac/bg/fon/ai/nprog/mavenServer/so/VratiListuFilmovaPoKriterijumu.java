@@ -19,12 +19,12 @@ import java.util.List;
 */
 public class VratiListuFilmovaPoKriterijumu extends AbstractSystemOperation {
 	/**
-	 * Lista filmova.
+	 * Lista filmova ucitana iz baze po odredjenom kriterijumu pretrage.
 	 */
     private List<Movie> movies;
     
    /** Predstavlja listu u kojoj ce biti zadati nazivi kolona po kojima trazimo
-	 * listu maratona.
+	 * listu filmova.
 	 */
 	List<String> columns;
 	/**
@@ -39,9 +39,8 @@ public class VratiListuFilmovaPoKriterijumu extends AbstractSystemOperation {
 * 
 * @param columns Lista u kojoj su zadati nazivi kolona po kojima trazimo listu filmova.
 * @param values  Lista u kojoj su zadate vrednosti kolona po kojima trazimo filmove.
-* @throws Exception
 */
-	public VratiListuFilmovaPoKriterijumu(List<String> columns, List<String> values) throws Exception {
+	public VratiListuFilmovaPoKriterijumu(List<String> columns, List<String> values) {
 		this.columns = columns;
 		this.values = values;
 	}
@@ -58,7 +57,7 @@ public class VratiListuFilmovaPoKriterijumu extends AbstractSystemOperation {
     }
     
     /**
-     * Metoda koja vraca listu filmova.
+     * Metoda koja vraca listu filmova po zadatom kriterijumu.
      * @return listaFimova
      */
     public List<Movie> getMovies() {

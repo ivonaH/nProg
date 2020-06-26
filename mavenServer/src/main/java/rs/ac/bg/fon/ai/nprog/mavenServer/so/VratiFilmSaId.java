@@ -14,7 +14,7 @@ import rs.ac.bg.fon.ai.nprog.mavenCommonLib.domain.Movie;
 public class VratiFilmSaId extends AbstractSystemOperation {
 
    /**
-    * Film
+    * Film sa trazenim id-ijem.
     */
    Movie movie;
    /**
@@ -41,7 +41,7 @@ public class VratiFilmSaId extends AbstractSystemOperation {
    }
 
    /**
-    * Metoda koja vraca film.
+    * Metoda koja vraca film sa trazenim id-ijem.
     *
     * @return trazeni film
     */
