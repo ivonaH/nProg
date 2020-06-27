@@ -307,7 +307,7 @@ public class FMovieMarathonSearch extends javax.swing.JDialog {
                     jLblMarathonName.setText(jLblMarathonName.getText() + "\n Datum: " + showtimes.get(i).getDate() + "\n");
                 }
 
-                jTxtAreaDetails.setText(jTxtAreaDetails.getText() + showtimes.get(i) + " " + showtimes.get(i).getMovie().getName() + "\n");
+                jTxtAreaDetails.setText(jTxtAreaDetails.getText() + "Vreme: "+showtimes.get(i).getTime() + "\n Film: " + showtimes.get(i).getMovie().getName() + "\n Sala: "+showtimes.get(i).getHall().getName()+"\n\n");
             }
         } catch (Exception ex) {
             Logger.getLogger(FMovieMarathonSearch.class.getName()).log(Level.SEVERE, null, ex);
