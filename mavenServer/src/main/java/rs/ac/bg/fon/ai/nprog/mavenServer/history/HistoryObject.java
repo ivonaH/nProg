@@ -7,12 +7,12 @@ import rs.ac.bg.fon.ai.nprog.mavenCommonLib.util.ResponseStatus;
 
 public class HistoryObject {
 	String username;
-	Date date;
+	String date;
 	int operation;
 	ResponseStatus status;
 	String errorMessage;
 
-	public HistoryObject(String username, Date date, int operation, ResponseStatus status, String errorMessage) {
+	public HistoryObject(String username, String date, int operation, ResponseStatus status, String errorMessage) {
 		this.username = username;
 		this.date = date;
 		this.operation = operation;
@@ -28,11 +28,11 @@ public class HistoryObject {
 		this.username = username;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

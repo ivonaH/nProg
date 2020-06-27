@@ -85,6 +85,8 @@ public class History {
 		}
 		user = u.getUsername();
 
+		SimpleDateFormat sdf=new SimpleDateFormat("dd.MM.yyyy HH:mm");
+		
 		int operation = responseObject.getOperation();
 		ResponseStatus status = responseObject.getStatus();
 		String errorMessage = "";
@@ -94,7 +96,7 @@ public class History {
 		
 		List<HistoryObject> historyObjects = getAllHistory();
 		if(historyObjects==null) historyObjects=new ArrayList<>();
-		HistoryObject historyObject = new HistoryObject(user, date, operation, status, errorMessage);
+		HistoryObject historyObject = new HistoryObject(user, sdf.format(date), operation, status, errorMessage);
 		historyObjects.add(historyObject);
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try (FileWriter out = new FileWriter(jsonFilePath)) {

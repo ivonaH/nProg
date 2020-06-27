@@ -1,23 +1,44 @@
 [
   {
     "username": "ivona",
-    "date": "Jun 20, 2020, 6:45:39 PM",
+    "date": "20.06.2020 6:45",
     "operation": 1,
     "status": "SUCCESS",
     "errorMessage": ""
   },
   {
     "username": "ivona",
-    "date": "Jun 20, 2020, 6:46:43 PM",
+    "date": "21.06.2020 6:46",
     "operation": 1,
     "status": "SUCCESS",
     "errorMessage": ""
   },
   {
     "username": "ivona",
-    "date": "Jun 20, 2020, 6:47:02 PM",
+    "date": "21.06.2020 6:46",
     "operation": 10,
     "status": "SUCCESS",
     "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 14:07",
+    "operation": 1,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 14:10",
+    "operation": 1,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 14:11",
+    "operation": 1,
+    "status": "ERROR",
+    "errorMessage": "Korisnik sa tim podacima je vec ulogovan."
   }
 ]

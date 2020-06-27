@@ -34,7 +34,6 @@ public class FServer extends javax.swing.JFrame {
 	    public FServer() {
 	        initComponents();
 	        jMenuItemServerStop.setEnabled(false);
-//	        setExtendedState(MAXIMIZED_BOTH);
 	        startTime();
 	        jLblServerStatus.setText("Server nije pokrenut");
 	        setLocationRelativeTo(null);
@@ -283,6 +282,7 @@ public class FServer extends javax.swing.JFrame {
 	           FHistory fHistory=new FHistory(History.getInstance().getAllHistory());
 	           fHistory.setVisible(true);
 	           fHistory.setLocationRelativeTo(null);
+//	           fHistory.setExtendedState(MAXIMIZED_BOTH);
 	    }                                          
 
 	    // Variables declaration - do not modify                     

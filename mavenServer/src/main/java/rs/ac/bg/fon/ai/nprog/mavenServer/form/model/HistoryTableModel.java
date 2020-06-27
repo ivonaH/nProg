@@ -22,7 +22,7 @@ import com.jayway.jsonpath.internal.path.ArraySliceOperation.Operation;
  */
 public class HistoryTableModel extends AbstractTableModel {
 
-	String[] columns = { "Korisnik", "Datum","Vreme", "Operacija", "Status", "Greska" };
+	String[] columns = { "Korisnik", "Datum i Vreme", "Operacija", "Status", "Greska" };
 	List<HistoryObject> history;
 
 	public HistoryTableModel(List<HistoryObject> history) {
@@ -47,16 +47,12 @@ public class HistoryTableModel extends AbstractTableModel {
 			return h.getUsername();
 		case 1:
 			SimpleDateFormat sdf=new SimpleDateFormat("dd.MM.yyyy");
-			return sdf.format(h.getDate());
-		case 2:{
-			SimpleDateFormat sdt=new SimpleDateFormat("HH:mm");
-			return sdt.format(h.getDate());
-		}
-		case 3:
+			return h.getDate();
+		case 2:
 			return h.getOperation();
-		case 4:
+		case 3:
 			return h.getStatus();
-		case 5:
+		case 4:
 			return h.getErrorMessage();
 		default:
 			return "n/a";
