@@ -157,9 +157,7 @@ public class ClientThread extends Thread {
 			System.out.println("USAO U CLIENT THREAD");
 			user = Controller.getInstance().login(checkUser);
 			if (user != null) {
-				System.out.println("USER JE" + user.getName());
-				System.out.println("NIJE NULL");
-				System.out.println("PROCITAO USERA:  ....." + user.getName());
+	
 
 				if (!Controller.getInstance().getOnlineUsers().contains(user)) {
 					System.out.println(Controller.getInstance().getOnlineUsers());
@@ -171,12 +169,14 @@ public class ClientThread extends Thread {
 				} else {
 					responseObject.setStatus(ResponseStatus.ERROR);
 					responseObject.setErrorMessage("Korisnik sa tim podacima je vec ulogovan.");
-					System.out.println("VEC JE ULOGOVAN TAJ USER");
 				}
+
+			}else {
+				responseObject.setStatus(ResponseStatus.ERROR);
+				responseObject.setErrorMessage("Neispravan username/password.");
 
 			}
 		} catch (Exception ex) {
-			System.out.println("JESTE NULL");
 			responseObject.setStatus(ResponseStatus.ERROR);
 			responseObject.setErrorMessage(ex.getMessage());
 			System.out.println(ex.getMessage());
