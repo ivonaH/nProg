@@ -40,5 +40,312 @@
     "operation": 1,
     "status": "ERROR",
     "errorMessage": "Korisnik sa tim podacima je vec ulogovan."
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:06",
+    "operation": 1,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:06",
+    "operation": 2,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:06",
+    "operation": 3,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:06",
+    "operation": 12,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:06",
+    "operation": 2,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:06",
+    "operation": 3,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:06",
+    "operation": 12,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:06",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:06",
+    "operation": 20,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:06",
+    "operation": 2,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:06",
+    "operation": 15,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:06",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:07",
+    "operation": 20,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:07",
+    "operation": 2,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:07",
+    "operation": 15,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:07",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:07",
+    "operation": 20,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:07",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:07",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:07",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:07",
+    "operation": 20,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:08",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:08",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:08",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:08",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:08",
+    "operation": 11,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:08",
+    "operation": 5,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:08",
+    "operation": 9,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:09",
+    "operation": 9,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:09",
+    "operation": 9,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:09",
+    "operation": 9,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:09",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:09",
+    "operation": 16,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:09",
+    "operation": 4,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:09",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:09",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "pera",
+    "date": "27.06.2020 17:18",
+    "operation": 1,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivoa",
+    "date": "27.06.2020 17:19",
+    "operation": 1,
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:19",
+    "operation": 1,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "pera",
+    "date": "27.06.2020 17:19",
+    "operation": 4,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "pera",
+    "date": "27.06.2020 17:19",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:20",
+    "operation": 1,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:20",
+    "operation": 4,
+    "status": "SUCCESS",
+    "errorMessage": ""
+  },
+  {
+    "username": "ivona",
+    "date": "27.06.2020 17:20",
+    "operation": 7,
+    "status": "SUCCESS",
+    "errorMessage": ""
   }
 ]
