@@ -347,5 +347,12 @@
     "operation": 7,
     "status": "SUCCESS",
     "errorMessage": ""
+  },
+  {
+    "username": "ivon",
+    "date": "28.06.2020 00:46",
+    "operation": 1,
+    "status": "ERROR",
+    "errorMessage": "Neispravan username/password."
   }
 ]
