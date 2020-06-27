@@ -354,5 +354,12 @@
     "operation": 1,
     "status": "ERROR",
     "errorMessage": "Neispravan username/password."
+  },
+  {
+    "username": "dsd",
+    "date": "28.06.2020 00:56",
+    "operation": 1,
+    "status": "ERROR",
+    "errorMessage": "Neispravan username/password."
   }
 ]
