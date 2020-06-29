@@ -52,7 +52,7 @@ public class NadjiRadnika extends AbstractSystemOperation {
 	 */
 	@Override
 	protected void executeSpecificOperation() throws Exception {
-		List<DomainObject> users = dbb.getAllDomainObjectsWithWhere(new User(), columns, values);
+		List<DomainObject> users = dbb.getAllDomainObjects(new User(), columns, values);
 		if (users.size() != 0) {
 			user = (User) users.get(0);
 		}

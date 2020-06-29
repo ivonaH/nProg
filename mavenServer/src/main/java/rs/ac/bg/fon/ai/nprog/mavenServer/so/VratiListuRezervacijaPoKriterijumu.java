@@ -56,7 +56,7 @@ public class VratiListuRezervacijaPoKriterijumu extends AbstractSystemOperation 
 	 */
     @Override
     protected void executeSpecificOperation() throws Exception {
-        reservations=(List<Reservation>)(Object) dbb.getAllDomainObjectsWithWhere(new Reservation(), columns, values);
+        reservations=(List<Reservation>)(Object) dbb.getAllDomainObjects(new Reservation(), columns, values);
     }
 
     /**

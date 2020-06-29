@@ -53,7 +53,7 @@ public class VratiListuFilmovaPoKriterijumu extends AbstractSystemOperation {
   	 */
     @Override
     protected void executeSpecificOperation() throws Exception {
-        movies = (List<Movie>) (Object) dbb.getAllDomainObjectsWithWhere(new Movie(), columns, values);
+        movies = (List<Movie>) (Object) dbb.getAllDomainObjects(new Movie(), columns, values);
     }
     
     /**

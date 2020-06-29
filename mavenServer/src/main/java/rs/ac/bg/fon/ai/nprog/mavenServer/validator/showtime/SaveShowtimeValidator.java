@@ -29,7 +29,7 @@ public class SaveShowtimeValidator {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		values.add(sdf.format(newShowtime.getDate()));
 
-		List<Showtime> showtimes = (List<Showtime>) (Object) dbb.getAllDomainObjectsWithWhere(new Showtime(), columns,
+		List<Showtime> showtimes = (List<Showtime>) (Object) dbb.getAllDomainObjects(new Showtime(), columns,
 				values);
 		if (showtimes.size() == 0) {
 			return;

@@ -14,7 +14,7 @@ public class SaveReservationValidator {
           int showtimeId=reservation.getShowtime().getShowtimeId();
           int hallCapacity=reservation.getShowtime().getHall().getCapacity();
           DBBroker dbb=new DBBroker();
-          int numberOfReservations=dbb.countDomainObjectsWithWhere(new Reservation(), "showtimeId",showtimeId);
+          int numberOfReservations=dbb.countDomainObjects(new Reservation(), "showtimeId",showtimeId);
        System.out.println("USAO U PROVERU I IZBROJAO JE REZERVACIJA: "+numberOfReservations+" hallCAPACITY: "+hallCapacity);
        if(numberOfReservations>=hallCapacity) throw new ValidationException("Showtime capacity is full.");
    }

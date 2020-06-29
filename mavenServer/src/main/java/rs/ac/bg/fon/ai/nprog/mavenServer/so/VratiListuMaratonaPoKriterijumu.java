@@ -53,7 +53,7 @@ public class VratiListuMaratonaPoKriterijumu extends AbstractSystemOperation {
 	 */
 	@Override
 	protected void executeSpecificOperation() throws Exception {
-		marathons = (List<MovieMarathon>) (Object) dbb.getAllDomainObjectsWithWhere(new MovieMarathon(), columns,
+		marathons = (List<MovieMarathon>) (Object) dbb.getAllDomainObjects(new MovieMarathon(), columns,
 				values);
 	}
 

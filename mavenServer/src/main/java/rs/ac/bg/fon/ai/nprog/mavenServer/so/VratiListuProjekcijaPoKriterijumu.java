@@ -53,7 +53,7 @@ public class VratiListuProjekcijaPoKriterijumu extends AbstractSystemOperation {
    	 */
     @Override
     protected void executeSpecificOperation() throws Exception {
-        showtimes = (List<Showtime>) (Object) dbb.getAllDomainObjectsWithWhere(new Showtime(), columns, values);
+        showtimes = (List<Showtime>) (Object) dbb.getAllDomainObjects(new Showtime(), columns, values);
     }
 
     /**
