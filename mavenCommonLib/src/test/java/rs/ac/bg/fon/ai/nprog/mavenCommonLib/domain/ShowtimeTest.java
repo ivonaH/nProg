@@ -124,15 +124,10 @@ public class ShowtimeTest {
 	public void testGetPrimaryKeyName() {
 		assertEquals("ShowtimeId", showtime.getPrimaryKeyName());
 	}
-//
-//	@Test
-//	public void testConvertRSList() {
-//		fail("Not yet implemented");
-//	}
 
 	@Test
 	public void testGetUpdateQuery() {
-		assertEquals(" hallId=111", showtime.getUpdateQuery());
+		assertEquals(" hallId=111, movieMarathonId=1111", showtime.getUpdateQuery());
 	}
 
 	@Test

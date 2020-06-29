@@ -328,7 +328,8 @@ public class Showtime implements DomainObject, Serializable {
 	 */
 	@Override
 	public String getUpdateQuery() {
-		return " hallId=" + hall.getHallId();
+		if(movieMarathon==null) return " hallId="+hall.getHallId();
+		return " hallId=" + hall.getHallId()+", movieMarathonId="+movieMarathon.getMarathonId();
 	}
 
 	/**
