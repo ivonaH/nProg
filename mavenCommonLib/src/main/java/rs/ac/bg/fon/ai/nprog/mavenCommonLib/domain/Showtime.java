@@ -184,7 +184,7 @@ public class Showtime implements DomainObject, Serializable {
 	/**
 	 * Set metoda za salu.
 	 * 
-	 * @param sala u kojoj se odrzava projekcija
+	 * @param hall sala u kojoj se odrzava projekcija
 	 */
 	public void setHall(Hall hall) {
 		this.hall = hall;
