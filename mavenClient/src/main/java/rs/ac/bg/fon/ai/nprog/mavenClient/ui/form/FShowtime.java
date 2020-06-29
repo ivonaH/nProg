@@ -72,7 +72,7 @@ public class FShowtime extends javax.swing.JDialog {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Showtime");
+        setTitle("Projekcija");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informacije o projekciji", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 0, 102))); // NOI18N
 
