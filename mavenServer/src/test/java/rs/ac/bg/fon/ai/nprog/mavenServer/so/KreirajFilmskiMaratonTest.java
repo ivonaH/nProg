@@ -126,8 +126,13 @@ public class KreirajFilmskiMaratonTest {
 	public void testKreirajFilmskiMaraton() throws Exception {
 		MovieMarathon movieMarathon = new MovieMarathon("Marathon1", new User(1));
 		List<Showtime> showtimes = new ArrayList<>();
-		showtimes.add(new Showtime(1));
-		showtimes.add(new Showtime(2));
+		Showtime showtime1=new Showtime(1);
+		showtime1.setHall(new Hall(1,"Hall1",10));
+		showtimes.add(showtime1);
+		Showtime showtime2=new Showtime(2);
+		showtime2.setHall(new Hall(2,"Hall2",20));
+		showtimes.add(showtime1);
+		showtimes.add(showtime2);
 
 		ArrayList<Object> objects = new ArrayList<>();
 		objects.add(movieMarathon);
